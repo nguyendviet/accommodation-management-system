@@ -61,17 +61,12 @@ public abstract class Reservation {
 	/**
 	 * @return
 	 */
-	public String toString() {
-		return null;
-	}
+	public abstract String toString();
 
 	/**
 	 * @return
 	 */
-	public double calculatePrice() {
-		// TODO implement here
-		return 0.0d;
-	}
+	public abstract double calculatePrice();
 
 	/**
 	 * @return
