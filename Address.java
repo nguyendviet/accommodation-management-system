@@ -7,36 +7,30 @@ import java.util.*;
 public class Address {
 
 	/**
-	 * Validate parameters
-	 * Save values to attributes
-	 * @param street 
-	 * @param city 
-	 * @param state 
-	 * @param zipcode
+	 * Default constructor
 	 */
-	public Address(String street, String city, String state, String zipcode) {
-		// TODO implement here
+	public Address() {
 	}
 
 	/**
 	 * 
 	 */
-	public String street;
+	private String street;
 
 	/**
 	 * 
 	 */
-	public String city;
+	private String city;
 
 	/**
 	 * 
 	 */
-	public String state;
+	private String state;
 
 	/**
 	 * 
 	 */
-	public String zipcode;
+	private String zipcode;
 
 	/**
 	 * Format and return object's data in XML format
@@ -46,6 +40,78 @@ public class Address {
 	public String toString() {
 		// TODO implement here
 		return "";
+	}
+
+	/**
+	 * Validate parameters
+	 * Save values to attributes
+	 * @param street 
+	 * @param city 
+	 * @param state 
+	 * @param zipcode
+	 */
+	public void Address(String street, String city, String state, String zipcode) {
+		// TODO implement here
+	}
+
+	/**
+	 * @return
+	 */
+	public String getStreet() {
+		// TODO implement here
+		return "";
+	}
+
+	/**
+	 * @return
+	 */
+	public String getCity() {
+		// TODO implement here
+		return "";
+	}
+
+	/**
+	 * @return
+	 */
+	public String getState() {
+		// TODO implement here
+		return "";
+	}
+
+	/**
+	 * @return
+	 */
+	public String getZipCode() {
+		// TODO implement here
+		return "";
+	}
+
+	/**
+	 * @param street
+	 */
+	public void setStreet(String street) {
+		// TODO implement here
+	}
+
+	/**
+	 * @param city
+	 */
+	public void setCity(String city) {
+		// TODO implement here
+	}
+
+	/**
+	 * @param state
+	 */
+	public void setState(String state) {
+		// TODO implement here
+	}
+
+	/**
+	 * @param zipcode
+	 */
+	public void setZipCode(String zipcode) {
+		// TODO implement here
 	}
 
 }

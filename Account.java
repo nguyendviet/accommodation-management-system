@@ -7,21 +7,15 @@ import java.util.*;
 public class Account {
 
 	/**
-	 * Validate parameters
-	 * Check for existing account number to avoid duplicate
-	 * @param accountNumber 
-	 * @param address 
-	 * @param phoneNumber 
-	 * @param email
+	 * Default constructor
 	 */
-	public Account(String accountNumber, String address, String phoneNumber, String email) {
-		// TODO implement here
+	public Account() {
 	}
 
 	/**
 	 * 
 	 */
-	public String accountNumber;
+	private String accountNumber;
 
 	/**
 	 * 
@@ -41,7 +35,7 @@ public class Account {
 	/**
 	 * 
 	 */
-	public List<Reservation> reservations;
+	private List<Reservation> reservations;
 
 	/**
 	 * @return
@@ -65,6 +59,7 @@ public class Account {
 	 */
 	public void setAddress(Address address) {
 		// TODO implement here
+		return null;
 	}
 
 	/**
@@ -81,6 +76,7 @@ public class Account {
 	 */
 	public void setPhoneNumber(String phoneNumber) {
 		// TODO implement here
+		return null;
 	}
 
 	/**
@@ -97,6 +93,15 @@ public class Account {
 	 */
 	public void setEmail(String email) {
 		// TODO implement here
+		return null;
+	}
+
+	/**
+	 * @return
+	 */
+	public String getAccountNumber() {
+		// TODO implement here
+		return "";
 	}
 
 	/**
@@ -105,6 +110,7 @@ public class Account {
 	 */
 	public void saveToFile(String fileName) {
 		// TODO implement here
+		return null;
 	}
 
 	/**
@@ -126,6 +132,27 @@ public class Account {
 	 */
 	public void editReservation(Reservation reservation) {
 		// TODO implement here
+		return null;
+	}
+
+	/**
+	 * Validate parameters
+	 * Check for existing account number to avoid duplicate
+	 * @param accountNumber 
+	 * @param address 
+	 * @param phoneNumber 
+	 * @param email
+	 */
+	public void Account(String accountNumber, Address address, String phoneNumber, String email) {
+		// TODO implement here
+	}
+
+	/**
+	 * @return
+	 */
+	public List<Reservation> getReservations() {
+		// TODO implement here
+		return null;
 	}
 
 }

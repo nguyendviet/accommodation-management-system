@@ -4,12 +4,12 @@ import java.util.*;
 /**
  * 
  */
-public class CabinReservation extends Reservation {
+public class Cabin extends Account {
 
 	/**
 	 * Default constructor
 	 */
-	public CabinReservation() {
+	public Cabin() {
 	}
 
 	/**
@@ -33,41 +33,32 @@ public class CabinReservation extends Reservation {
 	}
 
 	/**
-	 * @return
-	 */
-	public double calculatePrice() {
-		// TODO implement here
-		return 0.0d;
-	}
-
-	/**
 	 * Call parent's constructor
 	 * Validate parameters 
 	 * Assign parameters's values to attributes
 	 * @param accountNumber 
-	 * @param reservationNumber 
 	 * @param address 
-	 * @param checkIn 
-	 * @param checkOut 
-	 * @param price 
+	 * @param phoneNumber 
+	 * @param email 
 	 * @param hasFullKitchen 
 	 * @param hasLoft
 	 */
-	public void CabinReservation(String accountNumber, String reservationNumber, String address, Date checkIn, Date checkOut, double price, boolean hasFullKitchen, boolean hasLoft) {
+	public void Cabin(String accountNumber, Address address, String phoneNumber, String email, boolean hasFullKitchen, boolean hasLoft) {
 		// TODO implement here
 	}
 
 	/**
-	 * @return
+	 * @param hasFullKitchen
 	 */
-	public Cabin getCabinInfo() {
+	public void setHasFullKitchen(boolean hasFullKitchen) {
 		// TODO implement here
-		return null;
 	}
 
 	/**
-	 * @return
+	 * @param hasLoft
 	 */
-	public abstract double calculatePrice();
+	public void setHasLoft(boolean hasLoft) {
+		// TODO implement here
+	}
 
 }

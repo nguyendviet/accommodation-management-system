@@ -7,61 +7,55 @@ import java.util.*;
 public abstract class Reservation {
 
 	/**
-	 * Validate parameters
-	 * Validate account
-	 * Validate reservation number to avoid duplicate
-	 * Get details of lodge (address, number of beds, etc.)
-	 * Calculate the price based on check in and check out dates and the type of lodge.
-	 * @param accountNumber 
-	 * @param reservationNumber 
-	 * @param checkIn 
-	 * @param checkOut
+	 * Default constructor
 	 */
-	public Reservation(String accountNumber, String reservationNumber, Date checkIn, Date checkOut) {
-		// TODO implement here
+	public Reservation() {
 	}
 
 	/**
 	 * 
 	 */
-	public String accountNumber;
+	protected String accountNumber;
 
 	/**
 	 * 
 	 */
-	public String reservationNumber;
+	protected String reservationNumber;
 
 	/**
 	 * Validate account
 	 * Validate reservation number to avoid duplicate
 	 * Get details of the account (address,  number of beds, etc.) from the account's details
 	 */
-	public Address address;
+	private Address address;
 
 	/**
 	 * 
 	 */
-	public String status = "draft";
+	private String status = "draft";
 
 	/**
 	 * 
 	 */
-	public Date checkIn;
+	private Date checkIn;
 
 	/**
 	 * 
 	 */
-	public Date checkOut;
+	private Date checkOut;
 
 	/**
 	 * 
 	 */
-	public double price;
+	private double price;
 
 	/**
 	 * @return
 	 */
-	public abstract String toString();
+	public String toString() {
+		// TODO implement here
+		return "";
+	}
 
 	/**
 	 * @return
@@ -84,6 +78,99 @@ public abstract class Reservation {
 	 * @return
 	 */
 	public void updateReservation(Date checkIn, Date checkOut, Address address) {
+		// TODO implement here
+		return null;
+	}
+
+	/**
+	 * Validate parameters
+	 * Validate account
+	 * Validate reservation number to avoid duplicate
+	 * Get details of lodge (address, number of beds, etc.)
+	 * Calculate the price based on check in and check out dates and the type of lodge.
+	 * @param accountNumber 
+	 * @param reservationNumber 
+	 * @param checkIn 
+	 * @param checkOut
+	 */
+	public void Reservation(String accountNumber, String reservationNumber, Date checkIn, Date checkOut) {
+		// TODO implement here
+	}
+
+	/**
+	 * @return
+	 */
+	public String getAccountNumber() {
+		// TODO implement here
+		return "";
+	}
+
+	/**
+	 * @return
+	 */
+	public String getReservationNumber() {
+		// TODO implement here
+		return "";
+	}
+
+	/**
+	 * @return
+	 */
+	public String getAddress() {
+		// TODO implement here
+		return "";
+	}
+
+	/**
+	 * @return
+	 */
+	public String getStatus() {
+		// TODO implement here
+		return "";
+	}
+
+	/**
+	 * @return
+	 */
+	public Date getCheckIn() {
+		// TODO implement here
+		return null;
+	}
+
+	/**
+	 * @return
+	 */
+	public Date getCheckOut() {
+		// TODO implement here
+		return null;
+	}
+
+	/**
+	 * @return
+	 */
+	public double getPrice() {
+		// TODO implement here
+		return 0.0d;
+	}
+
+	/**
+	 * @param status
+	 */
+	public void setStatus(String status) {
+		// TODO implement here
+	}
+
+	/**
+	 * @param checkInDate
+	 */
+	public void setCheckIn(Date checkInDate) {
+		// TODO implement here
+	}
+
+	/**
+	 * @param checkOutDate
+	 */
+	public void setCheckOut(Date checkOutDate) {
 		// TODO implement here
 	}
 

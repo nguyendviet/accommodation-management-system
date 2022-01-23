@@ -7,9 +7,15 @@ import java.util.*;
 public class AccountManager {
 
 	/**
+	 * Default constructor
+	 */
+	public AccountManager() {
+	}
+
+	/**
 	 * Store and manage a single Account object at a time
 	 */
-	public Account account;
+	private Account account;
 
 	/**
 	 * Load new Account from the passed in object (close the currently loaded Account).
@@ -19,6 +25,7 @@ public class AccountManager {
 	 */
 	public void createNewAccount(Account account) {
 		// TODO implement here
+		return null;
 	}
 
 	/**
@@ -36,6 +43,7 @@ public class AccountManager {
 	 */
 	public void saveToFile(String fileName) {
 		// TODO implement here
+		return null;
 	}
 
 	/**
@@ -44,6 +52,7 @@ public class AccountManager {
 	 */
 	public void addReservation(Reservation reservation) {
 		// TODO implement here
+		return null;
 	}
 
 	/**
@@ -55,6 +64,7 @@ public class AccountManager {
 	 */
 	public void editReservation(Reservation reservation) {
 		// TODO implement here
+		return null;
 	}
 
 	/**
@@ -66,6 +76,22 @@ public class AccountManager {
 	 */
 	public void deleteReservation(String reservationNumber) {
 		// TODO implement here
+		return null;
+	}
+
+	/**
+	 * 
+	 */
+	public void AccountManager() {
+		// TODO implement here
+	}
+
+	/**
+	 * @return
+	 */
+	public Account getAccount() {
+		// TODO implement here
+		return null;
 	}
 
 }
