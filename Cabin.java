@@ -7,9 +7,32 @@ import java.util.*;
 public class Cabin extends Account {
 
 	/**
-	 * Default constructor
+	 * Call parent's constructor
+	 * Validate parameters 
+	 * Assign parameters's values to attributes
+	 * @param accountNumber 
+	 * @param address 
+	 * @param phoneNumber 
+	 * @param email 
 	 */
-	public Cabin() {
+	public Cabin(String accountNumber, Address address, String phoneNumber, String email) {
+		super(accountNumber, address, phoneNumber, email);
+	}
+
+	/**
+	 * Overloading constructor if has full kitchen and or loft
+	 * Call parent's constructor
+	 * Validate parameters 
+	 * Assign parameters's values to attributes
+	 * @param accountNumber 
+	 * @param address 
+	 * @param phoneNumber 
+	 * @param email 
+	 * @param hasFullKitchen 
+	 * @param hasLoft
+	 */
+	public Cabin(String accountNumber, Address address, String phoneNumber, String email, boolean hasFullKitchen, boolean hasLoft) {
+		super(accountNumber, address, phoneNumber, email);
 	}
 
 	/**
@@ -23,28 +46,13 @@ public class Cabin extends Account {
 	private boolean hasLoft;
 
 	/**
-	 * Overloading parent's method
+	 * Overriding parent's method
 	 * return "<cabin>" + super.toString() + "<hasFullKitchen>" + hasFullKitchen + ... "</cabin>";
 	 * @return
 	 */
 	public String toString() {
 		// TODO implement here
 		return "";
-	}
-
-	/**
-	 * Call parent's constructor
-	 * Validate parameters 
-	 * Assign parameters's values to attributes
-	 * @param accountNumber 
-	 * @param address 
-	 * @param phoneNumber 
-	 * @param email 
-	 * @param hasFullKitchen 
-	 * @param hasLoft
-	 */
-	public void Cabin(String accountNumber, Address address, String phoneNumber, String email, boolean hasFullKitchen, boolean hasLoft) {
-		// TODO implement here
 	}
 
 	/**

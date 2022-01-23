@@ -7,9 +7,20 @@ import java.util.*;
 public class CabinReservation extends Reservation {
 
 	/**
-	 * Default constructor
+	 * Call parent's constructor
+	 * Validate parameters 
+	 * Assign parameters's values to attributes
+	 * @param accountNumber 
+	 * @param reservationNumber 
+	 * @param address 
+	 * @param checkIn 
+	 * @param checkOut 
+	 * @param price 
+	 * @param hasFullKitchen 
+	 * @param hasLoft
 	 */
-	public CabinReservation() {
+	public CabinReservation(String accountNumber, String reservationNumber, String address, Date checkIn, Date checkOut, double price, boolean hasFullKitchen, boolean hasLoft) {
+		super(accountNumber, reservationNumber, checkIn, checkOut);
 	}
 
 	/**
@@ -23,7 +34,7 @@ public class CabinReservation extends Reservation {
 	private boolean hasLoft;
 
 	/**
-	 * Overloading parent's method
+	 * Overriding parent's method
 	 * return "<cabin>" + super.toString() + "<hasFullKitchen>" + hasFullKitchen + ... "</cabin>";
 	 * @return
 	 */
@@ -41,33 +52,11 @@ public class CabinReservation extends Reservation {
 	}
 
 	/**
-	 * Call parent's constructor
-	 * Validate parameters 
-	 * Assign parameters's values to attributes
-	 * @param accountNumber 
-	 * @param reservationNumber 
-	 * @param address 
-	 * @param checkIn 
-	 * @param checkOut 
-	 * @param price 
-	 * @param hasFullKitchen 
-	 * @param hasLoft
-	 */
-	public void CabinReservation(String accountNumber, String reservationNumber, String address, Date checkIn, Date checkOut, double price, boolean hasFullKitchen, boolean hasLoft) {
-		// TODO implement here
-	}
-
-	/**
 	 * @return
 	 */
 	public Cabin getCabinInfo() {
 		// TODO implement here
 		return null;
 	}
-
-	/**
-	 * @return
-	 */
-	public abstract double calculatePrice();
 
 }

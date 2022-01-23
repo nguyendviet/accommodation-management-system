@@ -25,7 +25,6 @@ public class AccountManager {
 	 */
 	public void createNewAccount(Account account) {
 		// TODO implement here
-		return null;
 	}
 
 	/**
@@ -43,7 +42,6 @@ public class AccountManager {
 	 */
 	public void saveToFile(String fileName) {
 		// TODO implement here
-		return null;
 	}
 
 	/**
@@ -52,7 +50,6 @@ public class AccountManager {
 	 */
 	public void addReservation(Reservation reservation) {
 		// TODO implement here
-		return null;
 	}
 
 	/**
@@ -64,7 +61,6 @@ public class AccountManager {
 	 */
 	public void editReservation(Reservation reservation) {
 		// TODO implement here
-		return null;
 	}
 
 	/**
@@ -75,14 +71,6 @@ public class AccountManager {
 	 * @return
 	 */
 	public void deleteReservation(String reservationNumber) {
-		// TODO implement here
-		return null;
-	}
-
-	/**
-	 * 
-	 */
-	public void AccountManager() {
 		// TODO implement here
 	}
 

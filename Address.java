@@ -7,9 +7,15 @@ import java.util.*;
 public class Address {
 
 	/**
-	 * Default constructor
+	 * Validate parameters
+	 * Save values to attributes
+	 * @param street 
+	 * @param city 
+	 * @param state 
+	 * @param zipcode
 	 */
-	public Address() {
+	public Address(String street, String city, String state, String zipcode) {
+		// TODO implement here
 	}
 
 	/**
@@ -40,18 +46,6 @@ public class Address {
 	public String toString() {
 		// TODO implement here
 		return "";
-	}
-
-	/**
-	 * Validate parameters
-	 * Save values to attributes
-	 * @param street 
-	 * @param city 
-	 * @param state 
-	 * @param zipcode
-	 */
-	public void Address(String street, String city, String state, String zipcode) {
-		// TODO implement here
 	}
 
 	/**

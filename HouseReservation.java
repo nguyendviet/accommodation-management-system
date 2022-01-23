@@ -7,9 +7,19 @@ import java.util.*;
 public class HouseReservation extends Reservation {
 
 	/**
-	 * Default constructor
+	 * Call parent's constructor
+	 * Validate parameters 
+	 * Assign parameters's values to attributes
+	 * @param accountNumber 
+	 * @param reservationNumber 
+	 * @param address 
+	 * @param checkIn 
+	 * @param checkOut 
+	 * @param price 
+	 * @param floorCount
 	 */
-	public HouseReservation() {
+	public HouseReservation(String accountNumber, String reservationNumber, String address, Date checkIn, Date checkOut, double price, int floorCount) {
+		super(accountNumber, reservationNumber, checkIn, checkOut);
 	}
 
 	/**
@@ -18,7 +28,7 @@ public class HouseReservation extends Reservation {
 	private int floorCount;
 
 	/**
-	 * Overloading parent's method
+	 * Overriding parent's method
 	 * return "<house>" + super.toString() + "<floorCount>" + floorCount + "<floorCount></house>";
 	 * @return
 	 */
@@ -35,21 +45,7 @@ public class HouseReservation extends Reservation {
 		return 0.0d;
 	}
 
-	/**
-	 * Call parent's constructor
-	 * Validate parameters 
-	 * Assign parameters's values to attributes
-	 * @param accountNumber 
-	 * @param reservationNumber 
-	 * @param address 
-	 * @param checkIn 
-	 * @param checkOut 
-	 * @param price 
-	 * @param floorCount
-	 */
-	public void HouseReservation(String accountNumber, String reservationNumber, String address, Date checkIn, Date checkOut, double price, int floorCount) {
-		// TODO implement here
-	}
+	
 
 	/**
 	 * @return
@@ -58,10 +54,5 @@ public class HouseReservation extends Reservation {
 		// TODO implement here
 		return null;
 	}
-
-	/**
-	 * @return
-	 */
-	public abstract double calculatePrice();
 
 }

@@ -7,9 +7,17 @@ import java.util.*;
 public abstract class Reservation {
 
 	/**
-	 * Default constructor
+	 * Validate parameters
+	 * Validate account
+	 * Validate reservation number to avoid duplicate
+	 * Get details of lodge (address, number of beds, etc.)
+	 * Calculate the price based on check in and check out dates and the type of lodge.
+	 * @param accountNumber 
+	 * @param reservationNumber 
+	 * @param checkIn 
+	 * @param checkOut
 	 */
-	public Reservation() {
+	public Reservation(String accountNumber, String reservationNumber, Date checkIn, Date checkOut) {
 	}
 
 	/**
@@ -78,22 +86,6 @@ public abstract class Reservation {
 	 * @return
 	 */
 	public void updateReservation(Date checkIn, Date checkOut, Address address) {
-		// TODO implement here
-		return null;
-	}
-
-	/**
-	 * Validate parameters
-	 * Validate account
-	 * Validate reservation number to avoid duplicate
-	 * Get details of lodge (address, number of beds, etc.)
-	 * Calculate the price based on check in and check out dates and the type of lodge.
-	 * @param accountNumber 
-	 * @param reservationNumber 
-	 * @param checkIn 
-	 * @param checkOut
-	 */
-	public void Reservation(String accountNumber, String reservationNumber, Date checkIn, Date checkOut) {
 		// TODO implement here
 	}
 
