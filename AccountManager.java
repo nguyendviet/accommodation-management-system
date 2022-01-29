@@ -19,7 +19,7 @@ public class AccountManager {
 
 	/**
 	 * Load new Account from the passed in object (close the currently loaded Account).
-	 * No duplicate accounts.
+	 * No duplicate accounts. If duplicate found, throw DuplicateObjectException.
 	 * @param account 
 	 * @return
 	 */
@@ -28,7 +28,8 @@ public class AccountManager {
 	}
 
 	/**
-	 * Look for file name with specific path. Return file output or not found.
+	 * Look for file name with specific path. Return file output if found. 
+	 * If file not found, throw IllegalLoadException.
 	 * @param fileName
 	 */
 	public void openFromFile(String fileName) {
@@ -36,16 +37,19 @@ public class AccountManager {
 	}
 
 	/**
-	 * Save account information in file
+	 * Save account information in file.
+	 * If found duplicate, throw DuplicateObjectException.
 	 * @param fileName 
-	 * @return Save current Account data to a file
+	 * @return
 	 */
 	public void saveToFile(String fileName) {
 		// TODO implement here
 	}
 
 	/**
-	 * @param reservation Add reservation to the currently loaded Account
+	 * Add reservation to a new file. 
+	 * If duplicate found, throw DuplicateObjectException.
+	 * @param reservation
 	 * @return
 	 */
 	public void addReservation(Reservation reservation) {
@@ -55,8 +59,8 @@ public class AccountManager {
 	/**
 	 * Validate parameters
 	 * Find existing reservation based on the input reservation number
-	 * Update the details if found
-	 * @param reservation Add reservation to the currently loaded Account
+	 * Update the details if found. If file not found, throw IllegalLoadException.
+	 * @param reservation
 	 * @return
 	 */
 	public void editReservation(Reservation reservation) {
@@ -66,8 +70,9 @@ public class AccountManager {
 	/**
 	 * Cancel reservation matching reservation number from currently loaded Account.  
 	 * Can only cancel reservation if the start date is in the future
-	 * Delete reservation entry
-	 * @param reservationNumber Add reservation to the currently loaded Account
+	 * Delete reservation entry if found. 
+	 * If file not found, throw IllegalLoadException.
+	 * @param reservationNumber
 	 * @return
 	 */
 	public void deleteReservation(String reservationNumber) {
@@ -75,6 +80,8 @@ public class AccountManager {
 	}
 
 	/**
+	 * Look for account. Return account output if found. 
+	 * If account not found, throw IllegalLoadException.
 	 * @return
 	 */
 	public Account getAccount() {

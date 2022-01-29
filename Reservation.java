@@ -79,7 +79,9 @@ public abstract class Reservation {
 	}
 
 	/**
-	 * Update reservation data using passed in parameters
+	 * Validate parameters
+	 * Update reservation data using passed in parameters.
+	 * Update the details if found. If file not found, throw IllegalLoadException.
 	 * @param checkIn 
 	 * @param checkOut 
 	 * @param address 
@@ -146,6 +148,9 @@ public abstract class Reservation {
 	}
 
 	/**
+	 * If for some reasons, cannot complete the reservation 
+	 * (e.g. lodge doesn't have available rooms at the time of booking), 
+	 * throw IllegalOperationException.
 	 * @param status
 	 */
 	public void setStatus(String status) {
