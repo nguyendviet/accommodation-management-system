@@ -7,6 +7,17 @@ import java.util.*;
 public class House extends Account {
 
 	/**
+	 * Default constructor
+	 */
+	public House() {
+	}
+
+	/**
+	 * 
+	 */
+	private int floorCount;
+
+	/**
 	 * Call parent's constructor
 	 * Validate parameters 
 	 * Assign parameters's values to attributes
@@ -16,14 +27,9 @@ public class House extends Account {
 	 * @param email 
 	 * @param floorCount
 	 */
-	public House(String accountNumber, Address address, String phoneNumber, String email, int floorCount) {
-		super(accountNumber, address, phoneNumber, email);
+	public void House(String accountNumber, Address address, String phoneNumber, String email, int floorCount) {
+		// TODO implement here
 	}
-
-	/**
-	 * 
-	 */
-	private int floorCount;
 
 	/**
 	 * Overriding parent's method

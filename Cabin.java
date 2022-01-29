@@ -7,16 +7,32 @@ import java.util.*;
 public class Cabin extends Account {
 
 	/**
+	 * Default constructor
+	 */
+	public Cabin() {
+	}
+
+	/**
+	 * 
+	 */
+	private boolean hasFullKitchen;
+
+	/**
+	 * 
+	 */
+	private boolean hasLoft;
+
+	/**
 	 * Call parent's constructor
 	 * Validate parameters 
 	 * Assign parameters's values to attributes
 	 * @param accountNumber 
 	 * @param address 
 	 * @param phoneNumber 
-	 * @param email 
+	 * @param email
 	 */
-	public Cabin(String accountNumber, Address address, String phoneNumber, String email) {
-		super(accountNumber, address, phoneNumber, email);
+	public void Cabin(String accountNumber, Address address, String phoneNumber, String email) {
+		// TODO implement here
 	}
 
 	/**
@@ -31,19 +47,9 @@ public class Cabin extends Account {
 	 * @param hasFullKitchen 
 	 * @param hasLoft
 	 */
-	public Cabin(String accountNumber, Address address, String phoneNumber, String email, boolean hasFullKitchen, boolean hasLoft) {
-		super(accountNumber, address, phoneNumber, email);
+	public void Cabin(String accountNumber, Address address, String phoneNumber, String email, boolean hasFullKitchen, boolean hasLoft) {
+		// TODO implement here
 	}
-
-	/**
-	 * 
-	 */
-	private boolean hasFullKitchen;
-
-	/**
-	 * 
-	 */
-	private boolean hasLoft;
 
 	/**
 	 * Overriding parent's method

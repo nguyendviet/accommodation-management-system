@@ -7,15 +7,9 @@ import java.util.*;
 public class Address {
 
 	/**
-	 * Validate parameters
-	 * Save values to attributes
-	 * @param street 
-	 * @param city 
-	 * @param state 
-	 * @param zipcode
+	 * Default constructor
 	 */
-	public Address(String street, String city, String state, String zipcode) {
-		// TODO implement here
+	public Address() {
 	}
 
 	/**
@@ -37,6 +31,19 @@ public class Address {
 	 * 
 	 */
 	private String zipcode;
+
+
+	/**
+	 * Validate parameters
+	 * Save values to attributes
+	 * @param street 
+	 * @param city 
+	 * @param state 
+	 * @param zipcode
+	 */
+	public void Address(String street, String city, String state, String zipcode) {
+		// TODO implement here
+	}
 
 	/**
 	 * Format and return object's data in XML format

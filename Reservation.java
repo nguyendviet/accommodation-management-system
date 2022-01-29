@@ -7,17 +7,9 @@ import java.util.*;
 public abstract class Reservation {
 
 	/**
-	 * Validate parameters
-	 * Validate account
-	 * Validate reservation number to avoid duplicate
-	 * Get details of lodge (address, number of beds, etc.)
-	 * Calculate the price based on check in and check out dates and the type of lodge.
-	 * @param accountNumber 
-	 * @param reservationNumber 
-	 * @param checkIn 
-	 * @param checkOut
+	 * Default constructor
 	 */
-	public Reservation(String accountNumber, String reservationNumber, Date checkIn, Date checkOut) {
+	public Reservation() {
 	}
 
 	/**
@@ -57,6 +49,22 @@ public abstract class Reservation {
 	 */
 	private double price;
 
+
+	/**
+	 * Validate parameters
+	 * Validate account
+	 * Validate reservation number to avoid duplicate
+	 * Get details of lodge (address, number of beds, etc.)
+	 * Calculate the price based on check in and check out dates and the type of lodge.
+	 * @param accountNumber 
+	 * @param reservationNumber 
+	 * @param checkIn 
+	 * @param checkOut
+	 */
+	public void Reservation(String accountNumber, String reservationNumber, Date checkIn, Date checkOut) {
+		// TODO implement here
+	}
+
 	/**
 	 * @return
 	 */
@@ -79,7 +87,9 @@ public abstract class Reservation {
 	}
 
 	/**
-	 * Update reservation data using passed in parameters
+	 * Validate parameters
+	 * Update reservation data using passed in parameters.
+	 * Update the details if found. If file not found, throw IllegalLoadException.
 	 * @param checkIn 
 	 * @param checkOut 
 	 * @param address 
@@ -87,6 +97,7 @@ public abstract class Reservation {
 	 */
 	public void updateReservation(Date checkIn, Date checkOut, Address address) {
 		// TODO implement here
+		return null;
 	}
 
 	/**
@@ -146,6 +157,7 @@ public abstract class Reservation {
 	}
 
 	/**
+	 * If for some reasons, cannot complete the reservation (e.g. lodge doesn't have available rooms at the time of booking), throw IllegalOperationException.
 	 * @param status
 	 */
 	public void setStatus(String status) {
