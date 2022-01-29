@@ -7,6 +7,22 @@ import java.util.*;
 public class CabinReservation extends Reservation {
 
 	/**
+	 * Default constructor
+	 */
+	public CabinReservation() {
+	}
+
+	/**
+	 * 
+	 */
+	private boolean hasFullKitchen;
+
+	/**
+	 * 
+	 */
+	private boolean hasLoft;
+
+	/**
 	 * Call parent's constructor
 	 * Validate parameters 
 	 * Assign parameters's values to attributes
@@ -19,19 +35,9 @@ public class CabinReservation extends Reservation {
 	 * @param hasFullKitchen 
 	 * @param hasLoft
 	 */
-	public CabinReservation(String accountNumber, String reservationNumber, String address, Date checkIn, Date checkOut, double price, boolean hasFullKitchen, boolean hasLoft) {
-		super(accountNumber, reservationNumber, checkIn, checkOut);
+	public void CabinReservation(String accountNumber, String reservationNumber, String address, Date checkIn, Date checkOut, double price, boolean hasFullKitchen, boolean hasLoft) {
+		// TODO implement here
 	}
-
-	/**
-	 * 
-	 */
-	private boolean hasFullKitchen;
-
-	/**
-	 * 
-	 */
-	private boolean hasLoft;
 
 	/**
 	 * Overriding parent's method
@@ -58,5 +64,10 @@ public class CabinReservation extends Reservation {
 		// TODO implement here
 		return null;
 	}
+
+	/**
+	 * @return
+	 */
+	public abstract double calculatePrice();
 
 }

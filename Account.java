@@ -7,15 +7,9 @@ import java.util.*;
 public class Account {
 
 	/**
-	 * Validate parameters
-	 * Check for existing account number to avoid duplicate
-	 * @param accountNumber 
-	 * @param address 
-	 * @param phoneNumber 
-	 * @param email
+	 * Default constructor
 	 */
-	public Account(String accountNumber, Address address, String phoneNumber, String email) {
-		// TODO implement here
+	public Account() {
 	}
 
 	/**
@@ -43,6 +37,21 @@ public class Account {
 	 */
 	private List<Reservation> reservations;
 
+
+
+
+	/**
+	 * Validate parameters
+	 * Check for existing account number to avoid duplicate
+	 * @param accountNumber 
+	 * @param address 
+	 * @param phoneNumber 
+	 * @param email
+	 */
+	public void Account(String accountNumber, Address address, String phoneNumber, String email) {
+		// TODO implement here
+	}
+
 	/**
 	 * @return
 	 */
@@ -65,6 +74,7 @@ public class Account {
 	 */
 	public void setAddress(Address address) {
 		// TODO implement here
+		return null;
 	}
 
 	/**
@@ -81,6 +91,7 @@ public class Account {
 	 */
 	public void setPhoneNumber(String phoneNumber) {
 		// TODO implement here
+		return null;
 	}
 
 	/**
@@ -97,6 +108,7 @@ public class Account {
 	 */
 	public void setEmail(String email) {
 		// TODO implement here
+		return null;
 	}
 
 	/**
@@ -113,11 +125,13 @@ public class Account {
 	 */
 	public void saveToFile(String fileName) {
 		// TODO implement here
+		return null;
 	}
 
 	/**
 	 * Add reservation object to the Vector of Reservation objects (check for duplicates)
-	 * and return the reservation number
+	 * and return the reservation number. 
+	 * If duplicate found, throw DuplicateObjectException.
 	 * @param reservation Add reservation to the currently loaded Account
 	 * @return
 	 */
@@ -128,12 +142,14 @@ public class Account {
 
 	/**
 	 * Cancel reservation matching reservation number from currently loaded Account.  
-	 * Can only cancel reservation if the start date is in the future
+	 * Can only cancel reservation if the start date is in the future. 
+	 * If cannot cancel, throw IllegalOperationException.
 	 * @param reservation Add reservation to the currently loaded Account
 	 * @return
 	 */
 	public void editReservation(Reservation reservation) {
 		// TODO implement here
+		return null;
 	}
 
 	/**

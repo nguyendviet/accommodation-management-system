@@ -7,16 +7,27 @@ import java.util.*;
 public class Hotel extends Account {
 
 	/**
+	 * Default constructor
+	 */
+	public Hotel() {
+	}
+
+	/**
+	 * 
+	 */
+	private boolean hasKitchenette;
+
+	/**
 	 * Call parent's constructor
 	 * Validate parameters 
 	 * Assign parameters's values to attributes
 	 * @param accountNumber 
 	 * @param address 
 	 * @param phoneNumber 
-	 * @param email 
+	 * @param email
 	 */
-	public Hotel(String accountNumber, Address address, String phoneNumber, String email) {
-		super(accountNumber, address, phoneNumber, email);
+	public void Hotel(String accountNumber, Address address, String phoneNumber, String email) {
+		// TODO implement here
 	}
 
 	/**
@@ -30,14 +41,9 @@ public class Hotel extends Account {
 	 * @param email 
 	 * @param hasKitchenette
 	 */
-	public Hotel(String accountNumber, Address address, String phoneNumber, String email, boolean hasKitchenette) {
-		super(accountNumber, address, phoneNumber, email);
+	public void Hotel(String accountNumber, Address address, String phoneNumber, String email, boolean hasKitchenette) {
+		// TODO implement here
 	}
-
-	/**
-	 * 
-	 */
-	private boolean hasKitchenette;
 
 	/**
 	 * Overriding parent's method
