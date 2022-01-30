@@ -87,7 +87,7 @@ public abstract class Reservation {
 	 * @param address 
 	 * @return
 	 */
-	public void updateReservation(Date checkIn, Date checkOut, Address address) {
+	public void updateReservation(Date checkIn, Date checkOut, Address address) throws IllegalLoadException {
 		// TODO implement here
 	}
 
@@ -153,7 +153,7 @@ public abstract class Reservation {
 	 * throw IllegalOperationException.
 	 * @param status
 	 */
-	public void setStatus(String status) {
+	public void setStatus(String status) throws IllegalOperationException {
 		// TODO implement here
 	}
 
