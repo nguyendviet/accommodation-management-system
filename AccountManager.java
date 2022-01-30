@@ -23,7 +23,7 @@ public class AccountManager {
 	 * @param account 
 	 * @return
 	 */
-	public void createNewAccount(Account account) {
+	public void createNewAccount(Account account) throws DuplicateObjectException {
 		// TODO implement here
 	}
 
@@ -32,7 +32,7 @@ public class AccountManager {
 	 * If file not found, throw IllegalLoadException.
 	 * @param fileName
 	 */
-	public void openFromFile(String fileName) {
+	public void openFromFile(String fileName) throws IllegalLoadException {
 		// TODO implement here
 	}
 
@@ -42,7 +42,7 @@ public class AccountManager {
 	 * @param fileName 
 	 * @return
 	 */
-	public void saveToFile(String fileName) {
+	public void saveToFile(String fileName) throws DuplicateObjectException {
 		// TODO implement here
 	}
 
@@ -52,7 +52,7 @@ public class AccountManager {
 	 * @param reservation
 	 * @return
 	 */
-	public void addReservation(Reservation reservation) {
+	public void addReservation(Reservation reservation) throws DuplicateObjectException {
 		// TODO implement here
 	}
 
@@ -63,7 +63,7 @@ public class AccountManager {
 	 * @param reservation
 	 * @return
 	 */
-	public void editReservation(Reservation reservation) {
+	public void editReservation(Reservation reservation) throws IllegalLoadException {
 		// TODO implement here
 	}
 
@@ -75,7 +75,7 @@ public class AccountManager {
 	 * @param reservationNumber
 	 * @return
 	 */
-	public void deleteReservation(String reservationNumber) {
+	public void deleteReservation(String reservationNumber) throws IllegalLoadException {
 		// TODO implement here
 	}
 
@@ -84,7 +84,7 @@ public class AccountManager {
 	 * If account not found, throw IllegalLoadException.
 	 * @return
 	 */
-	public Account getAccount() {
+	public Account getAccount() throws IllegalLoadException {
 		// TODO implement here
 		return null;
 	}

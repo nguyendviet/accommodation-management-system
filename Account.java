@@ -122,7 +122,7 @@ public class Account {
 	 * @param reservation Add reservation to the currently loaded Account
 	 * @return
 	 */
-	public String addReservation(Reservation reservation) {
+	public String addReservation(Reservation reservation) throws DuplicateFormatFlagsException {
 		// TODO implement here
 		return "";
 	}
@@ -134,7 +134,7 @@ public class Account {
 	 * @param reservation Add reservation to the currently loaded Account
 	 * @return
 	 */
-	public void editReservation(Reservation reservation) {
+	public void editReservation(Reservation reservation) throws IllegalOperationException {
 		// TODO implement here
 	}
 
