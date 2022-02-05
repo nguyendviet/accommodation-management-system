@@ -118,10 +118,12 @@ public class Account {
 	}
 
 	/**
+	 * Save account information in file.
+	 * If found duplicate, throw DuplicateObjectException.
 	 * @param fileName 
 	 * @return
 	 */
-	public void saveToFile(String fileName) {
+	public void saveToFile(String fileName) throws DuplicateObjectException {
 		// TODO implement here
 	}
 
