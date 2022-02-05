@@ -7,14 +7,24 @@ import java.util.*;
 public class Account {
 
 	/**
-	 * Validate parameters
+	 * Validate parameters and throws IllegalArgumentException
 	 * Check for existing account number to avoid duplicate
 	 * @param accountNumber 
 	 * @param address 
 	 * @param phoneNumber 
 	 * @param email
 	 */
-	public Account(String accountNumber, Address address, String phoneNumber, String email) {
+	public Account(String accountNumber, Address address, String phoneNumber, String email) throws IllegalArgumentException {
+		// TODO implement here
+	}
+
+	/**
+	 * Overloading constructor if parameter is a file name
+	 * Validate parameters and throws IllegalArgumentException
+	 * Read content from file
+	 * @param fileName 
+	 */
+	public Account(String fileName) throws IllegalArgumentException {
 		// TODO implement here
 	}
 
