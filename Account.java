@@ -134,7 +134,7 @@ public class Account {
 	 * @param reservation Add reservation to the currently loaded Account
 	 * @return
 	 */
-	public String addReservation(Reservation reservation) throws DuplicateFormatFlagsException {
+	public String addReservation(Reservation reservation) throws DuplicateObjectException {
 		// TODO implement here
 		return "";
 	}
