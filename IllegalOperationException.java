@@ -28,8 +28,8 @@ public class IllegalOperationException extends RuntimeException {
 	private String message;
 
 	/**
-	 * return "Error cancelling reservation: " + reservationNumber + " for account: " + accountNumber + ". Reservation can only be cancelled if the start date is in the future.";
-	 * return "Error completing reservation: " + reservationNumber + " for account: " + accountNumber + ". Reason: " + message;
+	 * return "Error cancelling reservation: " + reservationNumber + " for account: " + accountNumber + " . Reservation can only be cancelled if the start date is in the future.";
+	 * return "Error completing reservation: " + reservationNumber + " for account: " + accountNumber + " . Reason: " + message;
 	 * @return
 	 */
 	public String toString() {
