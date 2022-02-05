@@ -21,6 +21,15 @@ public abstract class Reservation {
 	}
 
 	/**
+	 * Validate parameter is not null and throw IllegalArgumentException.
+	 * Validate fileName with path. If not found, throw IllegalLoadException.
+	 * If found, load the object’s attributes with the content in the file.
+	 * @param fileName
+	 */
+	public Reservation(String fileName) throws IllegalLoadException {
+	}
+
+	/**
 	 * 
 	 */
 	protected String accountNumber;

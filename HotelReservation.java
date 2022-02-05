@@ -23,6 +23,17 @@ public class HotelReservation extends Reservation {
 	}
 
 	/**
+	 * Call parent's constructor
+	 * Validate the path to the file. If file not found, throw IllegalLoadException.
+	 * Load all the reservation attributes to the object’s attributes.
+	 * Assign parameters's values to attributes.
+	 * @param fileName
+	 */
+	public HotelReservation(String fileName) throws IllegalLoadException {
+		super(fileName);
+	}
+
+	/**
 	 * 
 	 */
 	private boolean hasKitchenette;
