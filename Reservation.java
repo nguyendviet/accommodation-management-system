@@ -66,11 +66,13 @@ public abstract class Reservation {
 	}
 
 	/**
+	 * Required method for the subclass to implement.
 	 * @return
 	 */
 	public abstract double calculatePrice();
 
 	/**
+	 * Calculate the nights based on the class’s attributes checkIn and checkOut.
 	 * @return
 	 */
 	public int calculateNights() {
@@ -158,16 +160,22 @@ public abstract class Reservation {
 	}
 
 	/**
+	 * Update/replace the class's checkIn attribute with the parameter. This 
+	 * action is only allowed when the reservation’s status is “draft”. 
+	 * Otherwise, throw IllegalOperationException.
 	 * @param checkInDate
 	 */
-	public void setCheckIn(Date checkInDate) {
+	public void setCheckIn(Date checkInDate) throws IllegalOperationException {
 		// TODO implement here
 	}
 
 	/**
+	 * Update/replace the class's checkOut attribute with the parameter. This 
+	 * action is only allowed when the reservation’s status is “draft”. 
+	 * Otherwise, throw IllegalOperationException.
 	 * @param checkOutDate
 	 */
-	public void setCheckOut(Date checkOutDate) {
+	public void setCheckOut(Date checkOutDate) throws IllegalOperationException {
 		// TODO implement here
 	}
 
