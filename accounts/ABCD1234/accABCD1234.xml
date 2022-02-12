@@ -1,0 +1,18 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<account>
+    <accountNumber>
+        ABCD1234
+    </accountNumber>
+    <address>
+        9082 Example St., Big City, Small State, 20001
+    </address>
+    <phoneNumber>
+        202-012-1304
+    </phoneNumber>
+    <email>
+        null
+    </email>
+    <reservations>
+        <reservation></reservation>
+    </reservations>
+</account>
