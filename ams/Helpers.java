@@ -1,3 +1,4 @@
+package ams;
 import org.w3c.dom.Document;
 /**
  * This class contains helper methods
@@ -12,7 +13,7 @@ public class Helpers {
         }
     }
 
-    public static String readTagFromDocument(Document doc, String tag) {
+    public static String getValueFromTag(String tag, Document doc) {
         return doc.getElementsByTagName(tag).item(0).getTextContent();
     }
 }

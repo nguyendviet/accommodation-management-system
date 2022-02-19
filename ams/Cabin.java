@@ -1,9 +1,10 @@
+package ams;
 import java.util.*;
 
 /**
  * 
  */
-public class Hotel extends Account {
+public class Cabin extends Account {
 
 	/**
 	 * Call parent's constructor
@@ -14,12 +15,12 @@ public class Hotel extends Account {
 	 * @param phoneNumber 
 	 * @param email 
 	 */
-	public Hotel(String accountNumber, Address address, String phoneNumber, String email) {
+	public Cabin(String accountNumber, Address address, String phoneNumber, String email) {
 		super(accountNumber, address, phoneNumber, email);
 	}
 
 	/**
-	 * Overload constructor if has kitchenette
+	 * Overloading constructor if has full kitchen and or loft
 	 * Call parent's constructor
 	 * Validate parameters 
 	 * Assign parameters's values to attributes
@@ -27,20 +28,26 @@ public class Hotel extends Account {
 	 * @param address 
 	 * @param phoneNumber 
 	 * @param email 
-	 * @param hasKitchenette
+	 * @param hasFullKitchen 
+	 * @param hasLoft
 	 */
-	public Hotel(String accountNumber, Address address, String phoneNumber, String email, boolean hasKitchenette) {
+	public Cabin(String accountNumber, Address address, String phoneNumber, String email, boolean hasFullKitchen, boolean hasLoft) {
 		super(accountNumber, address, phoneNumber, email);
 	}
 
 	/**
 	 * 
 	 */
-	private boolean hasKitchenette;
+	private boolean hasFullKitchen;
+
+	/**
+	 * 
+	 */
+	private boolean hasLoft;
 
 	/**
 	 * Overriding parent's method
-	 * return "<hotel>" + super.toString() + "<hasKitchenette>" + hasKitchenette + "</hotel>";
+	 * return "<cabin>" + super.toString() + "<hasFullKitchen>" + hasFullKitchen + ... "</cabin>";
 	 * @return
 	 */
 	public String toString() {
@@ -49,17 +56,16 @@ public class Hotel extends Account {
 	}
 
 	/**
-	 * @return
+	 * @param hasFullKitchen
 	 */
-	public boolean getHasKitchenette() {
+	public void setHasFullKitchen(boolean hasFullKitchen) {
 		// TODO implement here
-		return false;
 	}
 
 	/**
-	 * @param hasKitchenette
+	 * @param hasLoft
 	 */
-	public void setHasKitchenette(boolean hasKitchenette) {
+	public void setHasLoft(boolean hasLoft) {
 		// TODO implement here
 	}
 

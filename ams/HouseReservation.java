@@ -1,9 +1,10 @@
+package ams;
 import java.util.*;
 
 /**
  * 
  */
-public class HotelReservation extends Reservation {
+public class HouseReservation extends Reservation {
 
 	/**
 	 * Call parent's constructor
@@ -15,9 +16,9 @@ public class HotelReservation extends Reservation {
 	 * @param checkIn 
 	 * @param checkOut 
 	 * @param price 
-	 * @param hasKitchenette
+	 * @param floorCount
 	 */
-	public HotelReservation(String accountNumber, String reservationNumber, String address, Date checkIn, Date checkOut, double price, boolean hasKitchenette) {
+	public HouseReservation(String accountNumber, String reservationNumber, String address, Date checkIn, Date checkOut, double price, int floorCount) {
 		super(accountNumber, reservationNumber, checkIn, checkOut);
 	}
 
@@ -25,21 +26,21 @@ public class HotelReservation extends Reservation {
 	 * Call parent's constructor
 	 * Validate the path to the file. If file not found, throw IllegalLoadException.
 	 * Load all the reservation attributes to the object’s attributes.
-	 * Assign parameters's values to attributes.
+	 * Assign parameters's values to attributes
 	 * @param fileName
 	 */
-	public HotelReservation(String fileName) throws IllegalLoadException {
+	public HouseReservation(String fileName) throws IllegalLoadException {
 		super(fileName);
 	}
 
 	/**
 	 * 
 	 */
-	private boolean hasKitchenette;
+	private int floorCount;
 
 	/**
 	 * Overriding parent's method
-	 * return "<hotel>" + super.toString() + "<hasKitchenette>" + hasKitchenette + "</hotel>";
+	 * return "<house>" + super.toString() + "<floorCount>" + floorCount + "<floorCount></house>";
 	 * @return
 	 */
 	public String toString() {
@@ -60,7 +61,7 @@ public class HotelReservation extends Reservation {
 	/**
 	 * @return
 	 */
-	public Hotel getHotelInfo() {
+	public House getHouseInfo() {
 		// TODO implement here
 		return null;
 	}

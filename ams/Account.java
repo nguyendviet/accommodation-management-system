@@ -1,7 +1,10 @@
+package ams;
+
 import java.util.*;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
+
 import java.io.File;
 
 public class Account {
@@ -63,15 +66,15 @@ public class Account {
 			DocumentBuilder db = dbf.newDocumentBuilder();  
 			Document document = db.parse(accountFile);
 			// Assign values from file to object
-			this.accountNumber = Helpers.readTagFromDocument(document, "accountNumber");
+			this.accountNumber = Helpers.getValueFromTag("accountNumber", document);
 
-			String street = Helpers.readTagFromDocument(document, "street");
-			String city = Helpers.readTagFromDocument(document, "city");
-			String state = Helpers.readTagFromDocument(document, "state");
-			String zipcode = Helpers.readTagFromDocument(document, "zipcode");
+			String street = Helpers.getValueFromTag("street", document);
+			String city = Helpers.getValueFromTag("city", document);
+			String state = Helpers.getValueFromTag("state", document);
+			String zipcode = Helpers.getValueFromTag("zipcode", document);
 			this.address = new Address(street, city, state, zipcode);
-			this.phoneNumber = Helpers.readTagFromDocument(document, "phoneNumber");
-			this.email = Helpers.readTagFromDocument(document, "email");
+			this.phoneNumber = Helpers.getValueFromTag("phoneNumber", document);
+			this.email = Helpers.getValueFromTag("email", document);
 			reservations = new Vector<Reservation>();
 		} catch (Exception e) {  
 			e.printStackTrace();  
@@ -95,11 +98,10 @@ public class Account {
 	}
 
 	/**
-	 * @return
+	 * @return Address object
 	 */
 	public Address getAddress() {
-		// TODO implement here
-		return null;
+		return address;
 	}
 
 	/**

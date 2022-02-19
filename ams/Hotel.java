@@ -1,9 +1,10 @@
+package ams;
 import java.util.*;
 
 /**
  * 
  */
-public class Cabin extends Account {
+public class Hotel extends Account {
 
 	/**
 	 * Call parent's constructor
@@ -14,12 +15,12 @@ public class Cabin extends Account {
 	 * @param phoneNumber 
 	 * @param email 
 	 */
-	public Cabin(String accountNumber, Address address, String phoneNumber, String email) {
+	public Hotel(String accountNumber, Address address, String phoneNumber, String email) {
 		super(accountNumber, address, phoneNumber, email);
 	}
 
 	/**
-	 * Overloading constructor if has full kitchen and or loft
+	 * Overload constructor if has kitchenette
 	 * Call parent's constructor
 	 * Validate parameters 
 	 * Assign parameters's values to attributes
@@ -27,26 +28,20 @@ public class Cabin extends Account {
 	 * @param address 
 	 * @param phoneNumber 
 	 * @param email 
-	 * @param hasFullKitchen 
-	 * @param hasLoft
+	 * @param hasKitchenette
 	 */
-	public Cabin(String accountNumber, Address address, String phoneNumber, String email, boolean hasFullKitchen, boolean hasLoft) {
+	public Hotel(String accountNumber, Address address, String phoneNumber, String email, boolean hasKitchenette) {
 		super(accountNumber, address, phoneNumber, email);
 	}
 
 	/**
 	 * 
 	 */
-	private boolean hasFullKitchen;
-
-	/**
-	 * 
-	 */
-	private boolean hasLoft;
+	private boolean hasKitchenette;
 
 	/**
 	 * Overriding parent's method
-	 * return "<cabin>" + super.toString() + "<hasFullKitchen>" + hasFullKitchen + ... "</cabin>";
+	 * return "<hotel>" + super.toString() + "<hasKitchenette>" + hasKitchenette + "</hotel>";
 	 * @return
 	 */
 	public String toString() {
@@ -55,16 +50,17 @@ public class Cabin extends Account {
 	}
 
 	/**
-	 * @param hasFullKitchen
+	 * @return
 	 */
-	public void setHasFullKitchen(boolean hasFullKitchen) {
+	public boolean getHasKitchenette() {
 		// TODO implement here
+		return false;
 	}
 
 	/**
-	 * @param hasLoft
+	 * @param hasKitchenette
 	 */
-	public void setHasLoft(boolean hasLoft) {
+	public void setHasKitchenette(boolean hasKitchenette) {
 		// TODO implement here
 	}
 
