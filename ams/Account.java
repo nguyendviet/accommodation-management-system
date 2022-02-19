@@ -8,13 +8,14 @@ import org.w3c.dom.Document;
 import java.io.File;
 
 public class Account {
-
+	
 	private String accountNumber;
 	private Address address;
 	private String phoneNumber;
 	private String email = null;
 	private Vector<Reservation> reservations;
 
+	// Method to debug. I'll remove it in the final code.
 	public static void main(String... args) {
 		// Address testAddress = new Address("street", "city", "state", "zipcode");
         // Account testAccount = new Account("accountNumber", testAddress, "phoneNumber", "email");
@@ -65,16 +66,17 @@ public class Account {
 			// Ceate an instance of builder to parse the specified xml accountFile  
 			DocumentBuilder db = dbf.newDocumentBuilder();  
 			Document document = db.parse(accountFile);
-			// Assign values from file to object
-			this.accountNumber = Helpers.getValueFromTag("accountNumber", document);
-
 			String street = Helpers.getValueFromTag("street", document);
 			String city = Helpers.getValueFromTag("city", document);
 			String state = Helpers.getValueFromTag("state", document);
 			String zipcode = Helpers.getValueFromTag("zipcode", document);
+			
+			// Assign values from file to object
+			this.accountNumber = Helpers.getValueFromTag("accountNumber", document);
 			this.address = new Address(street, city, state, zipcode);
 			this.phoneNumber = Helpers.getValueFromTag("phoneNumber", document);
 			this.email = Helpers.getValueFromTag("email", document);
+			
 			reservations = new Vector<Reservation>();
 		} catch (Exception e) {  
 			e.printStackTrace();  
@@ -97,59 +99,35 @@ public class Account {
 			"</account>";
 	}
 
-	/**
-	 * @return Address object
-	 */
 	public Address getAddress() {
 		return address;
 	}
 
-	/**
-	 * @param address 
-	 * @return
-	 */
 	public void setAddress(Address address) {
-		// TODO implement here
+		Helpers.validateParameters(address.toString());
+		this.address = address;
 	}
 
-	/**
-	 * @return
-	 */
 	public String getPhoneNumber() {
-		// TODO implement here
-		return "";
+		return phoneNumber;
 	}
 
-	/**
-	 * @param phoneNumber 
-	 * @return
-	 */
 	public void setPhoneNumber(String phoneNumber) {
-		// TODO implement here
+		Helpers.validateParameters(phoneNumber);
+		this.phoneNumber = phoneNumber;
 	}
 
-	/**
-	 * @return
-	 */
 	public String getEmail() {
-		// TODO implement here
-		return "";
+		return email;
 	}
 
-	/**
-	 * @param email 
-	 * @return
-	 */
 	public void setEmail(String email) {
-		// TODO implement here
+		Helpers.validateParameters(email);
+		this.email = email;
 	}
 
-	/**
-	 * @return
-	 */
 	public String getAccountNumber() {
-		// TODO implement here
-		return "";
+		return accountNumber;
 	}
 
 	/**
