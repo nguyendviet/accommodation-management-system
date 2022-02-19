@@ -6,10 +6,10 @@ import java.util.*;
  */
 public class CabinReservation extends Reservation {
 
+	private boolean hasFullKitchen;
+	private boolean hasLoft;
+
 	/**
-	 * Call parent's constructor
-	 * Validate parameters 
-	 * Assign parameters's values to attributes
 	 * @param accountNumber 
 	 * @param reservationNumber 
 	 * @param address 
@@ -20,12 +20,17 @@ public class CabinReservation extends Reservation {
 	 * @param hasLoft
 	 */
 	public CabinReservation(String accountNumber, String reservationNumber, String address, Date checkIn, Date checkOut, double price, boolean hasFullKitchen, boolean hasLoft) {
+		// Call parent's constructor
 		super(accountNumber, reservationNumber, checkIn, checkOut);
+		// Validate parameters 
+		Helpers.validateParameters(accountNumber, reservationNumber, address, checkIn.toString(), checkOut.toString());
+		this.hasFullKitchen = hasFullKitchen;
+		this.hasLoft = hasLoft;
 	}
 
 	/**
+	 * Overloading constructor if load from file
 	 * Call parent's constructor
-	 * Validate the path to the file. If file not found, throw IllegalLoadException.
 	 * Load all the reservation attributes to the object’s attributes.
 	 * Assign parameters's values to attributes
 	 * @param fileName
@@ -35,23 +40,16 @@ public class CabinReservation extends Reservation {
 	}
 
 	/**
-	 * 
-	 */
-	private boolean hasFullKitchen;
-
-	/**
-	 * 
-	 */
-	private boolean hasLoft;
-
-	/**
 	 * Overriding parent's method
-	 * return "<cabin>" + super.toString() + "<hasFullKitchen>" + hasFullKitchen + ... "</cabin>";
-	 * @return
+	 * @return String in XML format
 	 */
 	public String toString() {
-		// TODO implement here
-		return "";
+		return 
+			"<cabin>" + 
+				super.toString() + 
+				"<hasFullKitchen>" + hasFullKitchen + "</hasFullKitchen>" +
+				"<hasLoft>" + hasLoft + "</hasLoft>" + 
+			"</cabin>";
 	}
 
 	/**
@@ -60,14 +58,6 @@ public class CabinReservation extends Reservation {
 	public double calculatePrice() {
 		// TODO implement here
 		return 0.0d;
-	}
-
-	/**
-	 * @return
-	 */
-	public Cabin getCabinInfo() {
-		// TODO implement here
-		return null;
 	}
 
 }
