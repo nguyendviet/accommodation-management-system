@@ -1,70 +1,70 @@
 package ams;
 import java.util.*;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import org.w3c.dom.Document;
+import java.io.File;
 
-/**
- * Reservation number prefixes: HT = hotel, CB = cabin, SH = house
- */
 public abstract class Reservation {
 
+	protected String accountNumber;
+	protected String reservationNumber;
+	private Address address;
+	private String status = "draft";
+	private String checkIn;
+	private String checkOut;
+	private String price;
+
 	/**
-	 * Validate parameters
-	 * Validate account
-	 * Validate reservation number to avoid duplicate
-	 * Get details of lodge (address, number of beds, etc.)
-	 * Calculate the price based on check in and check out dates and the type of lodge.
 	 * @param accountNumber 
 	 * @param reservationNumber 
 	 * @param checkIn 
 	 * @param checkOut
 	 */
-	public Reservation(String accountNumber, String reservationNumber, Date checkIn, Date checkOut) {
+	public Reservation(String accountNumber, String reservationNumber, String checkIn, String checkOut) {
+		// Validate parameters
+		Helpers.validateParameters(accountNumber, reservationNumber, checkIn, checkOut);
+
+		// Assign parameters to object
+		this.accountNumber = accountNumber;
+		this.reservationNumber = reservationNumber;
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
+		this.price = calculatePrice();
 	}
 
 	/**
-	 * Validate parameter is not null and throw IllegalArgumentException.
-	 * Validate fileName with path. If not found, throw IllegalLoadException.
-	 * If found, load the object’s attributes with the content in the file.
 	 * @param fileName
 	 */
 	public Reservation(String fileName) throws IllegalLoadException {
+		// Validate parameter is not null and throw IllegalArgumentException.
+		Helpers.validateParameters(fileName);
+
+		// Create a constructor of file class and parsing an XML file 
+		try { 
+			File accountFile = new File("./accounts/" + fileName);  
+			// Create an instance of factory that gives a document builder  
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();  
+			// Ceate an instance of builder to parse the specified xml accountFile  
+			DocumentBuilder db = dbf.newDocumentBuilder();  
+			Document document = db.parse(accountFile);
+			String street = Helpers.getValueFromTag("street", document);
+			String city = Helpers.getValueFromTag("city", document);
+			String state = Helpers.getValueFromTag("state", document);
+			String zipcode = Helpers.getValueFromTag("zipcode", document);
+			
+			// Assign values from file to object
+			this.accountNumber = Helpers.getValueFromTag("accountNumber", document);
+			this.address = new Address(street, city, state, zipcode);
+			this.status = Helpers.getValueFromTag("status", document);
+			this.checkIn = Helpers.getValueFromTag("checkIn", document);
+			this.checkOut = Helpers.getValueFromTag("checkOut", document);
+			this.price = Helpers.getValueFromTag("price", document);
+			
+		} catch (Exception e) {  
+			e.printStackTrace();  
+		}  
 	}
-
-	/**
-	 * 
-	 */
-	protected String accountNumber;
-
-	/**
-	 * 
-	 */
-	protected String reservationNumber;
-
-	/**
-	 * Validate account
-	 * Validate reservation number to avoid duplicate
-	 * Get details of the account (address,  number of beds, etc.) from the account's details
-	 */
-	private Address address;
-
-	/**
-	 * 
-	 */
-	private String status = "draft";
-
-	/**
-	 * 
-	 */
-	private Date checkIn;
-
-	/**
-	 * 
-	 */
-	private Date checkOut;
-
-	/**
-	 * 
-	 */
-	private double price;
 
 	/**
 	 * @return
@@ -78,7 +78,7 @@ public abstract class Reservation {
 	 * Required method for the subclass to implement.
 	 * @return
 	 */
-	public abstract double calculatePrice();
+	public abstract String calculatePrice();
 
 	/**
 	 * Calculate the nights based on the class’s attributes checkIn and checkOut.
@@ -90,7 +90,6 @@ public abstract class Reservation {
 	}
 
 	/**
-	 * Validate parameters
 	 * Update reservation data using passed in parameters.
 	 * Update the details if found. If file not found, throw IllegalLoadException.
 	 * @param checkIn 
@@ -99,63 +98,37 @@ public abstract class Reservation {
 	 * @return
 	 */
 	public void updateReservation(Date checkIn, Date checkOut, Address address) throws IllegalLoadException {
+		// Validate parameters
+		Helpers.validateParameters(checkIn.toString(), checkOut.toString());
 		// TODO implement here
 	}
 
-	/**
-	 * @return
-	 */
 	public String getAccountNumber() {
-		// TODO implement here
-		return "";
+		return accountNumber;
 	}
 
-	/**
-	 * @return
-	 */
 	public String getReservationNumber() {
-		// TODO implement here
-		return "";
+		return reservationNumber;
 	}
 
-	/**
-	 * @return
-	 */
-	public String getAddress() {
-		// TODO implement here
-		return "";
+	public Address getAddress() {
+		return address;
 	}
 
-	/**
-	 * @return
-	 */
 	public String getStatus() {
-		// TODO implement here
-		return "";
+		return status;
 	}
 
-	/**
-	 * @return
-	 */
-	public Date getCheckIn() {
-		// TODO implement here
-		return null;
+	public String getCheckIn() {
+		return checkIn;
 	}
 
-	/**
-	 * @return
-	 */
-	public Date getCheckOut() {
-		// TODO implement here
-		return null;
+	public String getCheckOut() {
+		return checkOut;
 	}
 
-	/**
-	 * @return
-	 */
-	public double getPrice() {
-		// TODO implement here
-		return 0.0d;
+	public String getPrice() {
+		return price;
 	}
 
 	/**
@@ -174,7 +147,7 @@ public abstract class Reservation {
 	 * Otherwise, throw IllegalOperationException.
 	 * @param checkInDate
 	 */
-	public void setCheckIn(Date checkInDate) throws IllegalOperationException {
+	public void setCheckIn(String checkInDate) throws IllegalOperationException {
 		// TODO implement here
 	}
 
@@ -184,7 +157,7 @@ public abstract class Reservation {
 	 * Otherwise, throw IllegalOperationException.
 	 * @param checkOutDate
 	 */
-	public void setCheckOut(Date checkOutDate) throws IllegalOperationException {
+	public void setCheckOut(String checkOutDate) throws IllegalOperationException {
 		// TODO implement here
 	}
 

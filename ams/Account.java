@@ -1,10 +1,8 @@
 package ams;
-
 import java.util.*;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
-
 import java.io.File;
 
 public class Account {
@@ -15,21 +13,9 @@ public class Account {
 	private String email = null;
 	private Vector<Reservation> reservations;
 
-	// Method to debug. I'll remove it in the final code.
-	public static void main(String... args) {
-		// Address testAddress = new Address("street", "city", "state", "zipcode");
-        // Account testAccount = new Account("accountNumber", testAddress, "phoneNumber", "email");
-		// System.out.println("\n" + testAccount.toString());
-
-		String fileName = "ABCD1234/accABCD1234.xml";
-		Account testAccount2 = new Account(fileName);
-		System.out.println("\n" + testAccount2.toString());
-    }
-
 	/**
 	 * Construct to create Account object and assign values for a new Account 
 	 * object
-	 * Check for existing account number to avoid duplicate
 	 * @param accountNumber 
 	 * @param address 
 	 * @param phoneNumber 

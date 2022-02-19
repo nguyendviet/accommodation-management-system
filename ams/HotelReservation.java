@@ -1,9 +1,5 @@
 package ams;
-import java.util.*;
 
-/**
- * 
- */
 public class HotelReservation extends Reservation {
 
 	private boolean hasKitchenette;
@@ -18,7 +14,7 @@ public class HotelReservation extends Reservation {
 	 * @param price 
 	 * @param hasKitchenette
 	 */
-	public HotelReservation(String accountNumber, String reservationNumber, String address, Date checkIn, Date checkOut, double price, boolean hasKitchenette) {
+	public HotelReservation(String accountNumber, String reservationNumber, String address, String checkIn, String checkOut, double price, boolean hasKitchenette) {
 		// Call parent's constructor
 		super(accountNumber, reservationNumber, checkIn, checkOut);
 		// Validate parameters 
@@ -51,9 +47,9 @@ public class HotelReservation extends Reservation {
 	/**
 	 * @return
 	 */
-	public double calculatePrice() {
+	public String calculatePrice() {
 		// TODO implement here
-		return 0.0d;
+		return "";
 	}
 
 }

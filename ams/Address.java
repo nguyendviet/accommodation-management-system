@@ -32,7 +32,7 @@ public class Address {
 				"<street>" + street + "</street>" +
 				"<city>" + city + "</city>" +
 				"<state>" + state + "</state>" +
-				"<zipcode" + zipcode + "</zipcode>" +
+				"<zipcode>" + zipcode + "</zipcode>" +
 			"</address>";
 	}
 

@@ -1,5 +1,4 @@
 package ams;
-import java.util.*;
 
 /**
  * On cancelling or completing reservation if it cannot be finalized, throw 
@@ -14,7 +13,7 @@ public class IllegalOperationException extends RuntimeException {
 	 * @param accountNumber 
 	 * @param reservationNumber
 	 */
-	public void IllegalOperationException(String accountNumber, String reservationNumber) {
+	public IllegalOperationException(String accountNumber, String reservationNumber) {
 		Helpers.validateParameters(accountNumber, reservationNumber);
 		this.accountNumber = accountNumber;
 		this.reservationNumber = reservationNumber;
