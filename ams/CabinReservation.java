@@ -15,11 +15,11 @@ public class CabinReservation extends Reservation {
 	 * @param hasFullKitchen 
 	 * @param hasLoft
 	 */
-	public CabinReservation(String accountNumber, String reservationNumber, String address, String checkIn, String checkOut, double price, boolean hasFullKitchen, boolean hasLoft) {
+	public CabinReservation(String accountNumber, String reservationNumber, Address address, String checkIn, String checkOut, String price, boolean hasFullKitchen, boolean hasLoft) {
 		// Call parent's constructor
-		super(accountNumber, reservationNumber, checkIn, checkOut);
+		super(accountNumber, reservationNumber, address, checkIn, checkOut);
 		// Validate parameters 
-		Helpers.validateParameters(accountNumber, reservationNumber, address, checkIn.toString(), checkOut.toString());
+		Helpers.validateParameters(accountNumber, reservationNumber, address.toString(), checkIn, checkOut);
 		this.hasFullKitchen = hasFullKitchen;
 		this.hasLoft = hasLoft;
 	}

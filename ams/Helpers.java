@@ -27,7 +27,7 @@ public class Helpers {
         return doc.getElementsByTagName(tag).item(0).getTextContent();
     }
 
-    public static String printXml(String input, int indent) {
+    public static String beautifyXml(String input, int indent) {
         try {
             Source xmlInput = new StreamSource(new StringReader(input));
             StringWriter stringWriter = new StringWriter();

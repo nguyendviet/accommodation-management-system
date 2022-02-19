@@ -1,24 +1,15 @@
 <?xml version="1.1" encoding="UTF-8"?>
 <reservation>
-    <reservationNumber>
-        HOTEL9087
-    </reservationNumber>
-    <accountNumber>
-        ABCD1234
-    </accountNumber>
+    <reservationNumber>HOTEL9087</reservationNumber>
+    <accountNumber>ABCD1234</accountNumber>
     <address>
-        9082 Example St., Big City, Small State, 20001
+        <street>9082 Example St.</street>
+        <city>Big City</city>
+        <state>Small State</state>
+        <zipcode>99999</zipcode>
     </address>
-    <status>
-        draft
-    </status>
-    <checkIn>
-        2022-02-12
-    </checkIn>
-    <checkOut>
-        2022-02-22
-    </checkOut>
-    <price>
-        2000
-    </price>
+    <status>draft</status>
+    <checkIn>2022-02-12</checkIn>
+    <checkOut>2022-02-22</checkOut>
+    <price>2000</price>
 </reservation>

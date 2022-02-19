@@ -21,19 +21,21 @@ public abstract class Reservation {
 	 * @param checkIn 
 	 * @param checkOut
 	 */
-	public Reservation(String accountNumber, String reservationNumber, String checkIn, String checkOut) {
+	public Reservation(String accountNumber, String reservationNumber, Address address, String checkIn, String checkOut) {
 		// Validate parameters
-		Helpers.validateParameters(accountNumber, reservationNumber, checkIn, checkOut);
+		Helpers.validateParameters(accountNumber, reservationNumber, address.toString(), checkIn, checkOut);
 
 		// Assign parameters to object
 		this.accountNumber = accountNumber;
 		this.reservationNumber = reservationNumber;
+		this.address = address;
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
 		this.price = calculatePrice();
 	}
 
 	/**
+	 * Overloading constructor if load from file
 	 * @param fileName
 	 */
 	public Reservation(String fileName) throws IllegalLoadException {
@@ -42,12 +44,12 @@ public abstract class Reservation {
 
 		// Create a constructor of file class and parsing an XML file 
 		try { 
-			File accountFile = new File("./accounts/" + fileName);  
+			File reservationFile = new File("./accounts/" + fileName);  
 			// Create an instance of factory that gives a document builder  
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();  
-			// Ceate an instance of builder to parse the specified xml accountFile  
+			// Ceate an instance of builder to parse the specified xml reservationFile  
 			DocumentBuilder db = dbf.newDocumentBuilder();  
-			Document document = db.parse(accountFile);
+			Document document = db.parse(reservationFile);
 			String street = Helpers.getValueFromTag("street", document);
 			String city = Helpers.getValueFromTag("city", document);
 			String state = Helpers.getValueFromTag("state", document);
@@ -70,8 +72,16 @@ public abstract class Reservation {
 	 * @return
 	 */
 	public String toString() {
-		// TODO implement here
-		return "";
+		return
+			"<reservation>" + 
+				"<reservationNumber>" + reservationNumber + "</reservationNumber>" +
+				"<accountNumber>" + accountNumber + "</accountNumber>" +
+				address.toString() +
+				"<status>" + status + "</status>" +
+				"<checkIn>" + checkIn + "</checkIn>" +
+				"<checkOut>" + checkOut + "</checkOut>" +
+				"<price>" + price + "</price>" +
+			"</reservation>";
 	}
 
 	/**
