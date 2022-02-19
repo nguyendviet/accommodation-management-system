@@ -1,9 +1,5 @@
 package ams;
-import java.util.*;
 
-/**
- * 
- */
 public class AccountManager {
 
 	/**

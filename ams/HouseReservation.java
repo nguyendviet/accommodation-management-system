@@ -6,10 +6,9 @@ import java.util.*;
  */
 public class HouseReservation extends Reservation {
 
+	private int floorCount;
+
 	/**
-	 * Call parent's constructor
-	 * Validate parameters 
-	 * Assign parameters's values to attributes
 	 * @param accountNumber 
 	 * @param reservationNumber 
 	 * @param address 
@@ -19,33 +18,34 @@ public class HouseReservation extends Reservation {
 	 * @param floorCount
 	 */
 	public HouseReservation(String accountNumber, String reservationNumber, String address, Date checkIn, Date checkOut, double price, int floorCount) {
+		// Call parent's constructor
 		super(accountNumber, reservationNumber, checkIn, checkOut);
+		// Validate parameters 
+		Helpers.validateParameters(accountNumber, reservationNumber, address, checkIn.toString(), checkOut.toString());
+		// Assign parameters's values to attributes
+		this.floorCount = floorCount;
 	}
 
 	/**
-	 * Call parent's constructor
-	 * Validate the path to the file. If file not found, throw IllegalLoadException.
-	 * Load all the reservation attributes to the object’s attributes.
-	 * Assign parameters's values to attributes
+	 * Overloading constructor if load from file
 	 * @param fileName
 	 */
 	public HouseReservation(String fileName) throws IllegalLoadException {
+		// Call parent's constructor
 		super(fileName);
 	}
 
-	/**
-	 * 
-	 */
-	private int floorCount;
-
+	
 	/**
 	 * Overriding parent's method
-	 * return "<house>" + super.toString() + "<floorCount>" + floorCount + "<floorCount></house>";
-	 * @return
+	 * @returns String in XML format
 	 */
 	public String toString() {
-		// TODO implement here
-		return "";
+		return 
+			"<house>" + 
+				super.toString() + 
+				"<floorCount>" + floorCount + "</floorCount>" +
+			"</house>";
 	}
 
 	/**
@@ -54,16 +54,6 @@ public class HouseReservation extends Reservation {
 	public double calculatePrice() {
 		// TODO implement here
 		return 0.0d;
-	}
-
-	
-
-	/**
-	 * @return
-	 */
-	public House getHouseInfo() {
-		// TODO implement here
-		return null;
 	}
 
 }

@@ -6,10 +6,10 @@ import java.util.*;
  */
 public class HotelReservation extends Reservation {
 
+	private boolean hasKitchenette;
+
 	/**
-	 * Call parent's constructor
-	 * Validate parameters 
-	 * Assign parameters's values to attributes
+	 * 
 	 * @param accountNumber 
 	 * @param reservationNumber 
 	 * @param address 
@@ -19,33 +19,33 @@ public class HotelReservation extends Reservation {
 	 * @param hasKitchenette
 	 */
 	public HotelReservation(String accountNumber, String reservationNumber, String address, Date checkIn, Date checkOut, double price, boolean hasKitchenette) {
+		// Call parent's constructor
 		super(accountNumber, reservationNumber, checkIn, checkOut);
+		// Validate parameters 
+		Helpers.validateParameters(accountNumber, reservationNumber, address, checkIn.toString(), checkOut.toString());
+		// Assign parameters's values to attributes
+		this.hasKitchenette = hasKitchenette;
 	}
 
 	/**
-	 * Call parent's constructor
-	 * Validate the path to the file. If file not found, throw IllegalLoadException.
-	 * Load all the reservation attributes to the object’s attributes.
-	 * Assign parameters's values to attributes.
+	 * Overloading constructor if load from file
 	 * @param fileName
 	 */
 	public HotelReservation(String fileName) throws IllegalLoadException {
+		// Call parent's constructor
 		super(fileName);
 	}
 
 	/**
-	 * 
-	 */
-	private boolean hasKitchenette;
-
-	/**
 	 * Overriding parent's method
-	 * return "<hotel>" + super.toString() + "<hasKitchenette>" + hasKitchenette + "</hotel>";
-	 * @return
+	 * @return String in XML format
 	 */
 	public String toString() {
-		// TODO implement here
-		return "";
+		return 
+			"<hotel>" + 
+				super.toString() + 
+				"<hasKitchenette>" + hasKitchenette + "</hasKitchenette>" +
+			"</hotel>";
 	}
 
 	/**
@@ -54,16 +54,6 @@ public class HotelReservation extends Reservation {
 	public double calculatePrice() {
 		// TODO implement here
 		return 0.0d;
-	}
-
-	
-
-	/**
-	 * @return
-	 */
-	public Hotel getHotelInfo() {
-		// TODO implement here
-		return null;
 	}
 
 }

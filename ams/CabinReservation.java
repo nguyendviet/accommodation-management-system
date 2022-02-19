@@ -30,12 +30,10 @@ public class CabinReservation extends Reservation {
 
 	/**
 	 * Overloading constructor if load from file
-	 * Call parent's constructor
-	 * Load all the reservation attributes to the object’s attributes.
-	 * Assign parameters's values to attributes
 	 * @param fileName
 	 */
 	public CabinReservation(String fileName) throws IllegalLoadException {
+		// Call parent's constructor
 		super(fileName);
 	}
 

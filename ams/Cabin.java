@@ -1,5 +1,4 @@
 package ams;
-import java.util.*;
 
 /**
  * 
@@ -52,6 +51,14 @@ public class Cabin extends Account {
 				"<hasFullKitchen>" + hasFullKitchen + "</hasFullKitchen>" +
 				"<hasLoft>" + hasLoft + "</hasLoft>" + 
 			"</cabin>";
+	}
+
+	public boolean getHasFullKitchen() {
+		return hasFullKitchen;
+	}
+
+	public boolean getHasLoft() {
+		return hasLoft;
 	}
 
 	/**
