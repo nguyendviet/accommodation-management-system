@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 /**
@@ -15,7 +14,11 @@ public class Address {
 	 * @param zipcode
 	 */
 	public Address(String street, String city, String state, String zipcode) {
-		// TODO implement here
+		Helpers.validateParameters(street, city, state, zipcode);
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.zipcode = zipcode;
 	}
 
 	/**
@@ -44,8 +47,13 @@ public class Address {
 	 * @return
 	 */
 	public String toString() {
-		// TODO implement here
-		return "";
+		return 
+			"<address>" + 
+				"<street>" + street + "</street>" +
+				"<city>" + city + "</city>" +
+				"<state>" + state + "</state>" +
+				"<zipcode" + zipcode + "</zipcode>" +
+			"</address>";
 	}
 
 	/**

@@ -4,10 +4,21 @@
         ABCD1234
     </accountNumber>
     <address>
-        9082 Example St., Big City, Small State, 20001
+        <street>
+            9082 Example St.
+        </street>
+        <city>
+            Big City
+        </city>
+        <state>
+            Small State
+        </state>
+        <zipcode>
+            99999
+        </zipcode>
     </address>
     <phoneNumber>
-        202-012-1304
+        999-012-1304
     </phoneNumber>
     <email>
         null

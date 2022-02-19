@@ -1,21 +1,47 @@
-
 import java.util.*;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import org.w3c.dom.Document;
+import java.io.File;
 
-/**
- * 
- */
 public class Account {
 
+	private String accountNumber;
+	private Address address;
+	private String phoneNumber;
+	private String email = null;
+	private Vector<Reservation> reservations;
+
+	public static void main(String... args) {
+		// Address testAddress = new Address("street", "city", "state", "zipcode");
+        // Account testAccount = new Account("accountNumber", testAddress, "phoneNumber", "email");
+		// System.out.println("\n" + testAccount.toString());
+
+		String fileName = "ABCD1234/accABCD1234.xml";
+		Account testAccount2 = new Account(fileName);
+		System.out.println("\n" + testAccount2.toString());
+    }
+
 	/**
-	 * Validate parameters and throws IllegalArgumentException
+	 * Construct to create Account object and assign values for a new Account 
+	 * object
 	 * Check for existing account number to avoid duplicate
 	 * @param accountNumber 
 	 * @param address 
 	 * @param phoneNumber 
 	 * @param email
 	 */
-	public Account(String accountNumber, Address address, String phoneNumber, String email) throws IllegalArgumentException {
-		// TODO implement here
+	public Account(String accountNumber, Address address, String phoneNumber, 
+	String email) throws IllegalArgumentException {
+		// Validate parameters and throws IllegalArgumentException except for 
+		// email address
+		Helpers.validateParameters(accountNumber, address.toString(), phoneNumber);
+
+		this.accountNumber = accountNumber;
+		this.address = address;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+		reservations = new Vector<Reservation>();
 	}
 
 	/**
@@ -25,40 +51,47 @@ public class Account {
 	 * @param fileName 
 	 */
 	public Account(String fileName) throws IllegalArgumentException {
-		// TODO implement here
+		// Validate parameters and throws IllegalArgumentException
+		Helpers.validateParameters(fileName);
+
+		// Create a constructor of file class and parsing an XML file 
+		try { 
+			File accountFile = new File("./accounts/" + fileName);  
+			// Create an instance of factory that gives a document builder  
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();  
+			// Ceate an instance of builder to parse the specified xml accountFile  
+			DocumentBuilder db = dbf.newDocumentBuilder();  
+			Document document = db.parse(accountFile);
+			// Assign values from file to object
+			this.accountNumber = Helpers.readTagFromDocument(document, "accountNumber");
+
+			String street = Helpers.readTagFromDocument(document, "street");
+			String city = Helpers.readTagFromDocument(document, "city");
+			String state = Helpers.readTagFromDocument(document, "state");
+			String zipcode = Helpers.readTagFromDocument(document, "zipcode");
+			this.address = new Address(street, city, state, zipcode);
+			this.phoneNumber = Helpers.readTagFromDocument(document, "phoneNumber");
+			this.email = Helpers.readTagFromDocument(document, "email");
+			reservations = new Vector<Reservation>();
+		} catch (Exception e) {  
+			e.printStackTrace();  
+		}  
 	}
 
 	/**
-	 * 
-	 */
-	private String accountNumber;
-
-	/**
-	 * 
-	 */
-	private Address address;
-
-	/**
-	 * 
-	 */
-	private String phoneNumber;
-
-	/**
-	 * 
-	 */
-	private String email = null;
-
-	/**
-	 * 
-	 */
-	private List<Reservation> reservations;
-
-	/**
-	 * @return
+	 * @return String in XML format
 	 */
 	public String toString() {
-		// TODO implement here
-		return "";
+		return 
+			"<account>" + 
+				"<accountNumber>" + accountNumber + "</accountNumber>" +
+				address.toString() +
+				"<phoneNumber>" + phoneNumber + "</phoneNumber>" + 
+				"<email>" + email + "</email>" + 
+				"<reservations>" +
+					"<reservation></reservation>" +
+				"</reservations>" + 
+			"</account>";
 	}
 
 	/**
