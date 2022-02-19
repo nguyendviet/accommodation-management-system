@@ -1,50 +1,41 @@
 package ams;
-import java.util.*;
 
 /**
  * If duplicate account/reservation exists throw unchecked user defined exception
  */
 public class DuplicateObjectException extends RuntimeException {
 
-	/**
-	 * Default constructor
-	 */
-	public DuplicateObjectException() {
-	}
-
-	/**
-	 * 
-	 */
 	private String accountNumber;
-
-	/**
-	 * 
-	 */
 	private String reservationNumber;
-
-	/**
-	 * return "Error adding account: " + accountNumber + " . Account number has already existed.";
-	 * return "Error adding reservation: " + reservationNumber + " . Reservation number has already existed.";
-	 * @return
-	 */
-	public String toString() {
-		// TODO implement here
-		return "";
-	}
 
 	/**
 	 * @param account
 	 */
-	public void DuplicateObjectException(Account account) {
-		// TODO implement here
+	public DuplicateObjectException(Account account) {
+		Helpers.validateParameters(account.toString());
+		this.accountNumber = account.getAccountNumber();
 	}
 
 	/**
-	 * Overload method if parameter type is different.
+	 * Overload constructor if parameter type is different.
 	 * @param reservation Overloading
 	 */
-	public void DuplicateObjectException(Reservation reservation) {
-		// TODO implement here
+	public DuplicateObjectException(Reservation reservation) {
+		Helpers.validateParameters(reservation.toString());
+		this.reservationNumber = reservation.getReservationNumber();
+	}
+
+	/**
+	 * @return Error message string
+	 */
+	public String toString() {
+		if (accountNumber != null) {
+			return "Error adding account: " + accountNumber + ". Account number has already existed.";
+		}
+		if (reservationNumber != null) {
+			return "Error adding reservation: " + reservationNumber + ". Reservation number has already existed.";
+		}
+		return "";
 	}
 
 }
