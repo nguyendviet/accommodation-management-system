@@ -6,24 +6,24 @@ import java.util.*;
  */
 public class Cabin extends Account {
 
+	private boolean hasFullKitchen;
+	private boolean hasLoft;
+
 	/**
-	 * Call parent's constructor
-	 * Validate parameters 
-	 * Assign parameters's values to attributes
 	 * @param accountNumber 
 	 * @param address 
 	 * @param phoneNumber 
 	 * @param email 
 	 */
 	public Cabin(String accountNumber, Address address, String phoneNumber, String email) {
+		// Call parent's constructor
 		super(accountNumber, address, phoneNumber, email);
+		// Validate parameters 
+		Helpers.validateParameters(accountNumber, address.toString(), phoneNumber);
 	}
 
 	/**
 	 * Overloading constructor if has full kitchen and or loft
-	 * Call parent's constructor
-	 * Validate parameters 
-	 * Assign parameters's values to attributes
 	 * @param accountNumber 
 	 * @param address 
 	 * @param phoneNumber 
@@ -32,41 +32,40 @@ public class Cabin extends Account {
 	 * @param hasLoft
 	 */
 	public Cabin(String accountNumber, Address address, String phoneNumber, String email, boolean hasFullKitchen, boolean hasLoft) {
+		// Call parent's constructor
 		super(accountNumber, address, phoneNumber, email);
+		// Validate parameters 
+		Helpers.validateParameters(accountNumber, address.toString(), phoneNumber);
+		// Assign parameters's values to attributes
+		this.hasFullKitchen = hasFullKitchen;
+		this.hasLoft = hasLoft;
 	}
 
 	/**
-	 * 
-	 */
-	private boolean hasFullKitchen;
-
-	/**
-	 * 
-	 */
-	private boolean hasLoft;
-
-	/**
 	 * Overriding parent's method
-	 * return "<cabin>" + super.toString() + "<hasFullKitchen>" + hasFullKitchen + ... "</cabin>";
-	 * @return
+	 * @return String in XML format
 	 */
 	public String toString() {
-		// TODO implement here
-		return "";
+		return 
+			"<cabin>" + 
+				super.toString() + 
+				"<hasFullKitchen>" + hasFullKitchen + "</hasFullKitchen>" +
+				"<hasLoft>" + hasLoft + "</hasLoft>" + 
+			"</cabin>";
 	}
 
 	/**
 	 * @param hasFullKitchen
 	 */
 	public void setHasFullKitchen(boolean hasFullKitchen) {
-		// TODO implement here
+		this.hasFullKitchen = hasFullKitchen;
 	}
 
 	/**
 	 * @param hasLoft
 	 */
 	public void setHasLoft(boolean hasLoft) {
-		// TODO implement here
+		this.hasLoft = hasLoft;
 	}
 
 }
