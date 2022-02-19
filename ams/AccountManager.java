@@ -7,15 +7,12 @@ import java.util.*;
 public class AccountManager {
 
 	/**
-	 * Default constructor
-	 */
-	public AccountManager() {
-	}
-
-	/**
 	 * Store and manage a single Account object at a time
 	 */
 	private Account account;
+
+	public AccountManager() {
+	}
 
 	/**
 	 * Load new Account from the passed in object (close the currently loaded Account).

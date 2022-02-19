@@ -1,21 +1,23 @@
 package ams;
 import java.util.*;
 
-/**
- * 
- */
 public class Address {
 
+	private String street;
+	private String city;
+	private String state;
+	private String zipcode;
+
 	/**
-	 * Validate parameters
-	 * Save values to attributes
 	 * @param street 
 	 * @param city 
 	 * @param state 
 	 * @param zipcode
 	 */
 	public Address(String street, String city, String state, String zipcode) {
+		// Validate parameters
 		Helpers.validateParameters(street, city, state, zipcode);
+		// Save values to attributes
 		this.street = street;
 		this.city = city;
 		this.state = state;
@@ -23,29 +25,7 @@ public class Address {
 	}
 
 	/**
-	 * 
-	 */
-	private String street;
-
-	/**
-	 * 
-	 */
-	private String city;
-
-	/**
-	 * 
-	 */
-	private String state;
-
-	/**
-	 * 
-	 */
-	private String zipcode;
-
-	/**
-	 * Format and return object's data in XML format
-	 * return "<address>" + "<street>" + street + "</street>" + ... + "</address>";
-	 * @return
+	 * @return String in XML format
 	 */
 	public String toString() {
 		return 
@@ -57,64 +37,52 @@ public class Address {
 			"</address>";
 	}
 
-	/**
-	 * @return
-	 */
 	public String getStreet() {
-		// TODO implement here
-		return "";
+		return street;
 	}
 
-	/**
-	 * @return
-	 */
 	public String getCity() {
-		// TODO implement here
-		return "";
+		return city;
 	}
 
-	/**
-	 * @return
-	 */
 	public String getState() {
-		// TODO implement here
-		return "";
+		return state;
 	}
 
-	/**
-	 * @return
-	 */
 	public String getZipCode() {
-		// TODO implement here
-		return "";
+		return zipcode;
 	}
 
 	/**
 	 * @param street
 	 */
 	public void setStreet(String street) {
-		// TODO implement here
+		Helpers.validateParameters(street);
+		this.street = street;
 	}
 
 	/**
 	 * @param city
 	 */
 	public void setCity(String city) {
-		// TODO implement here
+		Helpers.validateParameters(city);
+		this.city = city;
 	}
 
 	/**
 	 * @param state
 	 */
 	public void setState(String state) {
-		// TODO implement here
+		Helpers.validateParameters(state);
+		this.state = state;
 	}
 
 	/**
 	 * @param zipcode
 	 */
 	public void setZipCode(String zipcode) {
-		// TODO implement here
+		Helpers.validateParameters(zipcode);
+		this.zipcode = zipcode;
 	}
 
 }
