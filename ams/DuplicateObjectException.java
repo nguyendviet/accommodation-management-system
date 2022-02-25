@@ -30,10 +30,10 @@ public class DuplicateObjectException extends RuntimeException {
 	 */
 	public String toString() {
 		if (accountNumber != null) {
-			return "Error adding account: " + accountNumber + ". Account number has already existed.";
+			return "Error adding account: " + accountNumber + ". Account number already exists.";
 		}
 		if (reservationNumber != null) {
-			return "Error adding reservation: " + reservationNumber + ". Reservation number has already existed.";
+			return "Error adding reservation: " + reservationNumber + ". Reservation number already exists.";
 		}
 		return "";
 	}

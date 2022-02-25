@@ -9,6 +9,7 @@ public class AccountManager {
 	 * Store and manage a single Account object at a time
 	 */
 	private Account account;
+	private Reservation reservation;
 
 	public AccountManager() {
 	}
@@ -21,8 +22,9 @@ public class AccountManager {
 	 */
 	public void createNewAccount(Account account) throws DuplicateObjectException {
 		Helper.validateParameters(account.toString());
+
 		String accountNumber = account.getAccountNumber();
-		File accountPath = new File("./accounts/" + accountNumber);
+		File accountPath = Helper.getFolderPath(accountNumber);
 		boolean exists = accountPath.exists();
 		if (exists) {
 			throw new DuplicateObjectException(account);
@@ -32,7 +34,7 @@ public class AccountManager {
 		// Save the new account attributes
 		this.account = account;
 		// Save the account attributes to file
-		saveToFile(accountPath.toString());
+		saveToFile(accountPath.toString(), "acc");
 	}
 
 	/**
@@ -41,7 +43,9 @@ public class AccountManager {
 	 * @param accountNumber
 	 */
 	public Account openFromFile(String accountNumber) throws IllegalLoadException {
-		File accountFile = new File("./accounts/" + accountNumber + "/acc" + accountNumber + ".xml");
+		Helper.validateParameters(accountNumber);
+
+		File accountFile = Helper.getFilePath(accountNumber, "acc");
 		boolean exists = accountFile.exists();
 		if (!exists) {
 			throw new IllegalLoadException(accountNumber);
@@ -56,12 +60,25 @@ public class AccountManager {
 	 * @param filePath 
 	 * @return
 	 */
-	public void saveToFile(String filePath) {
-		try (
-			FileWriter fw = new FileWriter(filePath + "/acc" + account.getAccountNumber() + ".xml")) {
-			fw.write(Helper.beautifyXml(account.toString(), 2));
-		} catch (Exception e) {
-			e.printStackTrace();  
+	public void saveToFile(String filePath, String fileType) {
+		Helper.validateParameters(filePath, fileType);
+		
+		if (fileType == "acc") {
+			try (
+				FileWriter fw = new FileWriter(filePath + "/" + fileType + account.getAccountNumber() + ".xml")) {
+				fw.write(Helper.beautifyXml(account.toString(), 2));
+			} catch (Exception e) {
+				e.printStackTrace();  
+			}
+		} else if (fileType == "res") {
+			try (
+				FileWriter fw = new FileWriter(filePath + "/" + fileType + account.getAccountNumber() + ".xml")) {
+				fw.write(Helper.beautifyXml(reservation.toString(), 2));
+			} catch (Exception e) {
+				e.printStackTrace();  
+			}
+		} else {
+			throw new IllegalArgumentException("fileType must be 'acc' or 'res'.");
 		}
 	}
 
@@ -72,7 +89,17 @@ public class AccountManager {
 	 * @return
 	 */
 	public void addReservation(Reservation reservation) throws DuplicateObjectException {
-		// TODO implement here
+		Helper.validateParameters(reservation.toString());
+
+		String accountNumber = reservation.getAccountNumber();
+		File reservationFile = Helper.getFilePath(accountNumber, "res");
+		boolean exists = reservationFile.exists();
+		if (exists) {
+			throw new DuplicateObjectException(reservation);
+		}
+		File accountPath = Helper.getFolderPath(accountNumber);
+		this.reservation = reservation;
+		saveToFile(accountPath.toString(), "res");
 	}
 
 	/**

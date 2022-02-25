@@ -21,7 +21,7 @@ public class IllegalLoadException extends RuntimeException {
 	 * @return Error message string
 	 */
 	public String toString() {
-		return "Error loading file: " + fileName;
+		return "Error loading file: " + fileName + ". File doesn't exist.";
 	}
 
 }

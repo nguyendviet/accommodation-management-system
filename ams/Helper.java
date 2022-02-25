@@ -26,6 +26,7 @@ public class Helper {
     }
 
     public static String getValueFromTag(String tag, Document doc) {
+        validateParameters(tag);
         return doc.getElementsByTagName(tag).item(0).getTextContent();
     }
 
@@ -52,6 +53,7 @@ public class Helper {
     }
 
     public static void deleteFile(String filePath) {
+        validateParameters(filePath);
         File dir = new File(filePath);
         if (dir.isDirectory()) {
             File[] files = dir.listFiles();
@@ -61,4 +63,20 @@ public class Helper {
         }
         dir.delete();
     }
+
+    public static File getFolderPath(String fileName) {
+        validateParameters(fileName);
+        File folderPath = new File("./accounts/" + fileName);
+        return folderPath;
+    }
+
+    public static File getFilePath(String fileName, String fileType) {
+        validateParameters(fileName, fileType);
+        if (fileType != "acc" && fileType != "res") {
+            throw new IllegalArgumentException("File fileType must be 'acc' or 'res'.");
+        }
+        File filePath = new File("./accounts/" + fileName + "/" + fileType + fileName + ".xml");
+            return filePath;
+    }
+
 }
