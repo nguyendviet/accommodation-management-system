@@ -1,5 +1,8 @@
 package ams;
 
+import java.io.File;
+import java.io.FileWriter;
+
 public class AccountManager {
 
 	/**
@@ -17,26 +20,49 @@ public class AccountManager {
 	 * @return
 	 */
 	public void createNewAccount(Account account) throws DuplicateObjectException {
-		// TODO implement here
+		Helper.validateParameters(account.toString());
+		String accountNumber = account.getAccountNumber();
+		File accountPath = new File("./accounts/" + accountNumber);
+		boolean exists = accountPath.exists();
+		if (exists) {
+			throw new DuplicateObjectException(account);
+		}
+		// Create the new account folder
+		accountPath.mkdirs();
+		// Save the new account attributes
+		this.account = account;
+		// Save the account attributes to file
+		saveToFile(accountPath.toString());
 	}
 
 	/**
 	 * Look for file name with specific path. Return file output if found. 
 	 * If file not found, throw IllegalLoadException.
-	 * @param fileName
+	 * @param accountNumber
 	 */
-	public void openFromFile(String fileName) throws IllegalLoadException {
-		// TODO implement here
+	public Account openFromFile(String accountNumber) throws IllegalLoadException {
+		File accountFile = new File("./accounts/" + accountNumber + "/acc" + accountNumber + ".xml");
+		boolean exists = accountFile.exists();
+		if (!exists) {
+			throw new IllegalLoadException(accountNumber);
+		}
+		Account loadedAccount = new Account(accountNumber);
+		this.account = loadedAccount;
+		return loadedAccount;
 	}
 
 	/**
 	 * Save account information in file.
-	 * If found duplicate, throw DuplicateObjectException.
-	 * @param fileName 
+	 * @param filePath 
 	 * @return
 	 */
-	public void saveToFile(String fileName) throws DuplicateObjectException {
-		// TODO implement here
+	public void saveToFile(String filePath) {
+		try (
+			FileWriter fw = new FileWriter(filePath + "/acc" + account.getAccountNumber() + ".xml")) {
+			fw.write(Helper.beautifyXml(account.toString(), 2));
+		} catch (Exception e) {
+			e.printStackTrace();  
+		}
 	}
 
 	/**

@@ -19,7 +19,7 @@ public class CabinReservation extends Reservation {
 		// Call parent's constructor
 		super(accountNumber, reservationNumber, address, checkIn, checkOut);
 		// Validate parameters 
-		Helpers.validateParameters(accountNumber, reservationNumber, address.toString(), checkIn, checkOut);
+		Helper.validateParameters(accountNumber, reservationNumber, address.toString(), checkIn, checkOut);
 		this.hasFullKitchen = hasFullKitchen;
 		this.hasLoft = hasLoft;
 	}

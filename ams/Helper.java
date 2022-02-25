@@ -8,12 +8,14 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
+
+import java.io.File;
 import java.io.StringReader;
 import org.w3c.dom.Document;
 /**
  * This class contains helper methods
  */
-public class Helpers {
+public class Helper {
     // Validate parameters if any is null or an empty string
     public static void validateParameters(String ...parameters) {
         for (String parameter : parameters) {
@@ -47,5 +49,16 @@ public class Helpers {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static void deleteFile(String filePath) {
+        File dir = new File(filePath);
+        if (dir.isDirectory()) {
+            File[] files = dir.listFiles();
+            for (File file: files) {
+                deleteFile(file.toString());
+            }
+        }
+        dir.delete();
     }
 }

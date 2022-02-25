@@ -23,7 +23,7 @@ public abstract class Reservation {
 	 */
 	public Reservation(String accountNumber, String reservationNumber, Address address, String checkIn, String checkOut) {
 		// Validate parameters
-		Helpers.validateParameters(accountNumber, reservationNumber, address.toString(), checkIn, checkOut);
+		Helper.validateParameters(accountNumber, reservationNumber, address.toString(), checkIn, checkOut);
 
 		// Assign parameters to object
 		this.accountNumber = accountNumber;
@@ -40,7 +40,7 @@ public abstract class Reservation {
 	 */
 	public Reservation(String fileName) throws IllegalLoadException {
 		// Validate parameter is not null and throw IllegalArgumentException.
-		Helpers.validateParameters(fileName);
+		Helper.validateParameters(fileName);
 
 		// Create a constructor of file class and parsing an XML file 
 		try { 
@@ -50,21 +50,21 @@ public abstract class Reservation {
 			// Ceate an instance of builder to parse the specified xml reservationFile  
 			DocumentBuilder db = dbf.newDocumentBuilder();  
 			Document document = db.parse(reservationFile);
-			String street = Helpers.getValueFromTag("street", document);
-			String city = Helpers.getValueFromTag("city", document);
-			String state = Helpers.getValueFromTag("state", document);
-			String zipcode = Helpers.getValueFromTag("zipcode", document);
+			String street = Helper.getValueFromTag("street", document);
+			String city = Helper.getValueFromTag("city", document);
+			String state = Helper.getValueFromTag("state", document);
+			String zipcode = Helper.getValueFromTag("zipcode", document);
 			
 			// Assign values from file to object
-			this.accountNumber = Helpers.getValueFromTag("accountNumber", document);
+			this.accountNumber = Helper.getValueFromTag("accountNumber", document);
 			this.address = new Address(street, city, state, zipcode);
-			this.status = Helpers.getValueFromTag("status", document);
-			this.checkIn = Helpers.getValueFromTag("checkIn", document);
-			this.checkOut = Helpers.getValueFromTag("checkOut", document);
-			this.price = Helpers.getValueFromTag("price", document);
+			this.status = Helper.getValueFromTag("status", document);
+			this.checkIn = Helper.getValueFromTag("checkIn", document);
+			this.checkOut = Helper.getValueFromTag("checkOut", document);
+			this.price = Helper.getValueFromTag("price", document);
 			
 		} catch (Exception e) {  
-			e.printStackTrace();  
+			e.printStackTrace();
 		}  
 	}
 
@@ -109,7 +109,7 @@ public abstract class Reservation {
 	 */
 	public void updateReservation(Date checkIn, Date checkOut, Address address) throws IllegalLoadException {
 		// Validate parameters
-		Helpers.validateParameters(checkIn.toString(), checkOut.toString());
+		Helper.validateParameters(checkIn.toString(), checkOut.toString());
 		// TODO implement here
 	}
 

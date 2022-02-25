@@ -25,7 +25,7 @@ public class Account {
 	String email) throws IllegalArgumentException {
 		// Validate parameters and throws IllegalArgumentException except for 
 		// email address
-		Helpers.validateParameters(accountNumber, address.toString(), phoneNumber);
+		Helper.validateParameters(accountNumber, address.toString(), phoneNumber);
 
 		this.accountNumber = accountNumber;
 		this.address = address;
@@ -38,34 +38,37 @@ public class Account {
 	 * Overloading constructor if parameter is a file name
 	 * Validate parameters and throws IllegalArgumentException
 	 * Read content from file
-	 * @param fileName 
+	 * @param accountNumber 
 	 */
-	public Account(String fileName) throws IllegalArgumentException {
+	public Account(String accountNumber) throws IllegalArgumentException {
 		// Validate parameters and throws IllegalArgumentException
-		Helpers.validateParameters(fileName);
+		Helper.validateParameters(accountNumber);
 
 		// Create a constructor of file class and parsing an XML file 
 		try { 
-			File accountFile = new File("./accounts/" + fileName);  
+			File accountFile = new File("./accounts/" + accountNumber +"/acc" + accountNumber + ".xml");  
+			boolean exists = accountFile.exists();
+			if (!exists) {
+				throw new IllegalLoadException(accountNumber);
+			}
 			// Create an instance of factory that gives a document builder  
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();  
 			// Ceate an instance of builder to parse the specified xml accountFile  
 			DocumentBuilder db = dbf.newDocumentBuilder();  
 			Document document = db.parse(accountFile);
-			String street = Helpers.getValueFromTag("street", document);
-			String city = Helpers.getValueFromTag("city", document);
-			String state = Helpers.getValueFromTag("state", document);
-			String zipcode = Helpers.getValueFromTag("zipcode", document);
-			
+			String street = Helper.getValueFromTag("street", document);
+			String city = Helper.getValueFromTag("city", document);
+			String state = Helper.getValueFromTag("state", document);
+			String zipcode = Helper.getValueFromTag("zipcode", document);
 			// Assign values from file to object
-			this.accountNumber = Helpers.getValueFromTag("accountNumber", document);
+			this.accountNumber = Helper.getValueFromTag("accountNumber", document);
 			this.address = new Address(street, city, state, zipcode);
-			this.phoneNumber = Helpers.getValueFromTag("phoneNumber", document);
-			this.email = Helpers.getValueFromTag("email", document);
+			this.phoneNumber = Helper.getValueFromTag("phoneNumber", document);
+			this.email = Helper.getValueFromTag("email", document);
 			
 			reservations = new Vector<Reservation>();
 		} catch (Exception e) {  
-			e.printStackTrace();  
+			e.printStackTrace();
 		}  
 	}
 
@@ -90,7 +93,7 @@ public class Account {
 	}
 
 	public void setAddress(Address address) {
-		Helpers.validateParameters(address.toString());
+		Helper.validateParameters(address.toString());
 		this.address = address;
 	}
 
@@ -99,7 +102,7 @@ public class Account {
 	}
 
 	public void setPhoneNumber(String phoneNumber) {
-		Helpers.validateParameters(phoneNumber);
+		Helper.validateParameters(phoneNumber);
 		this.phoneNumber = phoneNumber;
 	}
 
@@ -108,7 +111,7 @@ public class Account {
 	}
 
 	public void setEmail(String email) {
-		Helpers.validateParameters(email);
+		Helper.validateParameters(email);
 		this.email = email;
 	}
 

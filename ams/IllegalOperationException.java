@@ -14,7 +14,7 @@ public class IllegalOperationException extends RuntimeException {
 	 * @param reservationNumber
 	 */
 	public IllegalOperationException(String accountNumber, String reservationNumber) {
-		Helpers.validateParameters(accountNumber, reservationNumber);
+		Helper.validateParameters(accountNumber, reservationNumber);
 		this.accountNumber = accountNumber;
 		this.reservationNumber = reservationNumber;
 	}

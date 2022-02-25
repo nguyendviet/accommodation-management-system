@@ -18,7 +18,7 @@ public class Cabin extends Account {
 		// Call parent's constructor
 		super(accountNumber, address, phoneNumber, email);
 		// Validate parameters 
-		Helpers.validateParameters(accountNumber, address.toString(), phoneNumber);
+		Helper.validateParameters(accountNumber, address.toString(), phoneNumber);
 	}
 
 	/**
@@ -34,7 +34,7 @@ public class Cabin extends Account {
 		// Call parent's constructor
 		super(accountNumber, address, phoneNumber, email);
 		// Validate parameters 
-		Helpers.validateParameters(accountNumber, address.toString(), phoneNumber);
+		Helper.validateParameters(accountNumber, address.toString(), phoneNumber);
 		// Assign parameters's values to attributes
 		this.hasFullKitchen = hasFullKitchen;
 		this.hasLoft = hasLoft;

@@ -12,7 +12,7 @@ public class DuplicateObjectException extends RuntimeException {
 	 * @param account
 	 */
 	public DuplicateObjectException(Account account) {
-		Helpers.validateParameters(account.toString());
+		Helper.validateParameters(account.toString());
 		this.accountNumber = account.getAccountNumber();
 	}
 
@@ -21,7 +21,7 @@ public class DuplicateObjectException extends RuntimeException {
 	 * @param reservation Overloading
 	 */
 	public DuplicateObjectException(Reservation reservation) {
-		Helpers.validateParameters(reservation.toString());
+		Helper.validateParameters(reservation.toString());
 		this.reservationNumber = reservation.getReservationNumber();
 	}
 

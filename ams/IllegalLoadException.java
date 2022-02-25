@@ -13,7 +13,7 @@ public class IllegalLoadException extends RuntimeException {
 	 * @param fileName
 	 */
 	public IllegalLoadException(String fileName) {
-		Helpers.validateParameters(fileName);
+		Helper.validateParameters(fileName);
 		this.fileName = fileName;
 	}
 

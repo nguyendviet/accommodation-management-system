@@ -1,0 +1,14 @@
+<account>
+  <accountNumber>ZXCV4909</accountNumber>
+  <address>
+    <street>street</street>
+    <city>city</city>
+    <state>state</state>
+    <zipcode>zipcode</zipcode>
+  </address>
+  <phoneNumber>test</phoneNumber>
+  <email>test@test.com</email>
+  <reservations>
+    <reservation/>
+  </reservations>
+</account>

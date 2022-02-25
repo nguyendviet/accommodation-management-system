@@ -18,7 +18,7 @@ public class HotelReservation extends Reservation {
 		// Call parent's constructor
 		super(accountNumber, reservationNumber, address, checkIn, checkOut);
 		// Validate parameters 
-		Helpers.validateParameters(accountNumber, reservationNumber, address.toString(), checkIn, checkOut, price);
+		Helper.validateParameters(accountNumber, reservationNumber, address.toString(), checkIn, checkOut, price);
 		// Assign parameters's values to attributes
 		this.hasKitchenette = hasKitchenette;
 	}

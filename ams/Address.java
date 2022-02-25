@@ -15,7 +15,7 @@ public class Address {
 	 */
 	public Address(String street, String city, String state, String zipcode) {
 		// Validate parameters
-		Helpers.validateParameters(street, city, state, zipcode);
+		Helper.validateParameters(street, city, state, zipcode);
 		// Save values to attributes
 		this.street = street;
 		this.city = city;
@@ -56,7 +56,7 @@ public class Address {
 	 * @param street
 	 */
 	public void setStreet(String street) {
-		Helpers.validateParameters(street);
+		Helper.validateParameters(street);
 		this.street = street;
 	}
 
@@ -64,7 +64,7 @@ public class Address {
 	 * @param city
 	 */
 	public void setCity(String city) {
-		Helpers.validateParameters(city);
+		Helper.validateParameters(city);
 		this.city = city;
 	}
 
@@ -72,7 +72,7 @@ public class Address {
 	 * @param state
 	 */
 	public void setState(String state) {
-		Helpers.validateParameters(state);
+		Helper.validateParameters(state);
 		this.state = state;
 	}
 
@@ -80,7 +80,7 @@ public class Address {
 	 * @param zipcode
 	 */
 	public void setZipCode(String zipcode) {
-		Helpers.validateParameters(zipcode);
+		Helper.validateParameters(zipcode);
 		this.zipcode = zipcode;
 	}
 
