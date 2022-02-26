@@ -267,7 +267,6 @@ public class Account {
 	public String addReservation(HouseReservation houseReservation) throws DuplicateObjectException {
 		Helper.validateParameters(houseReservation.toString());
 		this.reservations.add(houseReservation.getReservationNumber());
-		System.out.println("this res: " + this.reservations.toString());
 		this.saveToFile();
 		this.saveToFile(houseReservation);
 		return houseReservation.getReservationNumber();

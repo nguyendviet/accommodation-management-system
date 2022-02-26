@@ -16,7 +16,7 @@
   <bathrooms>2</bathrooms>
   <size>2000</size>
   <price>15000</price>
-  <nights>0</nights>
+  <nights>30</nights>
   <total/>
   <floorCount>3</floorCount>
 </reservation>

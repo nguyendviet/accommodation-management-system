@@ -1,9 +1,16 @@
 package ams;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
+
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public abstract class Reservation {
 
@@ -252,8 +259,14 @@ public abstract class Reservation {
 	 * @return
 	 */
 	public String calculateNights() {
-		// TODO implement here
-		return "0";
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		String checkInStr = checkIn.formatted(formatter);
+		String checkOutStr = checkOut.formatted(formatter);
+		LocalDate parsedCheckIn = LocalDate.parse(checkInStr, formatter);
+		LocalDate parsedCheckOut = LocalDate.parse(checkOutStr, formatter);
+		Long diff = ChronoUnit.DAYS.between(parsedCheckIn,parsedCheckOut);
+		String nightCount = Long.toString(diff);
+		return nightCount;
 	}
 
 	/**

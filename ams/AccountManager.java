@@ -43,7 +43,7 @@ public class AccountManager {
 		File accountFile = Helper.getFilePath(accountNumber, accountNumber, "acc");
 		boolean exists = accountFile.exists();
 		if (!exists) {
-			throw new IllegalLoadException(accountNumber);
+			throw new IllegalLoadException("acc" + accountNumber);
 		}
 
 		Account loadedAccount = new Account(accountNumber);
@@ -153,7 +153,7 @@ public class AccountManager {
 		File file = new File("./accounts/" + account.getAccountNumber() + "/res" + fileName + ".xml");
 		boolean exists = file.exists();
 		if (!exists) {
-			throw new IllegalLoadException(fileName);
+			throw new IllegalLoadException("res" + fileName);
 		}
 		account.deleteReservation(fileName);
 	}

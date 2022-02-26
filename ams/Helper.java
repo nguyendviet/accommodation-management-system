@@ -82,6 +82,6 @@ public class Helper {
     public static void checkPassingTest(String desire, String result) {
         System.out.println("Expect: " + desire);
         System.out.println("Actual: " + result);
-        System.out.println("Test pass: " + result.equals(desire));
+        System.out.println("✅ Test pass: " + result.equals(desire));
     }
 }
