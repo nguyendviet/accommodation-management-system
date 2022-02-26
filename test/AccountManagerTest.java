@@ -13,7 +13,7 @@ public class AccountManagerTest {
 
     public static void main(String []args) {
         createNewAccountTest();
-        // openFromFileTest();s
+        openFromFileTest();
         // saveToFileTest();
         // addReservationTest();
         // deleteReservationTest();
@@ -64,27 +64,27 @@ public class AccountManagerTest {
         }
     }
 
-    public static void saveToFileTest() {
-        System.out.println("\n=== Save to file tests ===");
+    // public static void saveToFileTest() {
+    //     System.out.println("\n=== Save to file tests ===");
 
-        System.out.println("\nSave to a file that already exists.");
-        Account loadedAccount = accountManager.openFromFile("ABCD1234");
-        System.out.println("Account details before:");
-        System.out.println(Helper.beautifyXml(loadedAccount.toString(), 2));
-        Address newAddress = new Address("1000 Sesame St.", "Fun City", "Sesame", "10942");
-        loadedAccount.setAddress(newAddress);
-        loadedAccount.setEmail("test@email.com");
-        accountManager.saveToFile("./accounts/ABCD1234/accABCD1234.xml", loadedAccount.toString());
-        System.out.println("Account details after:");
-        System.out.println(Helper.beautifyXml(loadedAccount.toString(), 2));
-        System.out.println("✅ File updated successfully.");
+    //     System.out.println("\nSave to a file that already exists.");
+    //     Account loadedAccount = accountManager.openFromFile("ABCD1234");
+    //     System.out.println("Account details before:");
+    //     System.out.println(Helper.beautifyXml(loadedAccount.toString(), 2));
+    //     Address newAddress = new Address("1000 Sesame St.", "Fun City", "Sesame", "10942");
+    //     loadedAccount.setAddress(newAddress);
+    //     loadedAccount.setEmail("test@email.com");
+    //     accountManager.saveToFile("./accounts/ABCD1234/accABCD1234.xml", loadedAccount.toString());
+    //     System.out.println("Account details after:");
+    //     System.out.println(Helper.beautifyXml(loadedAccount.toString(), 2));
+    //     System.out.println("✅ File updated successfully.");
 
-        // Reset
-        Address oldAddress = new Address("9082 Example St.", "Big City", "Small", "10942");
-        loadedAccount.setAddress(oldAddress);
-        loadedAccount.setEmail("email2@test.com");
-        accountManager.saveToFile("./accounts/ABCD1234/accABCD1234.xml", loadedAccount.toString());
-    }
+    //     // Reset
+    //     Address oldAddress = new Address("9082 Example St.", "Big City", "Small", "10942");
+    //     loadedAccount.setAddress(oldAddress);
+    //     loadedAccount.setEmail("email2@test.com");
+    //     accountManager.saveToFile("./accounts/ABCD1234/accABCD1234.xml", loadedAccount.toString());
+    // }
 
     // public static void addReservationTest() {
     //     System.out.println("\n=== Add reservation tests ===");
@@ -92,7 +92,8 @@ public class AccountManagerTest {
     //     Address address = new Address("street", "city", "state", "zipcode");
 
     //     System.out.println("\nAdd a reservation that already exists.");
-    //     HotelReservation existingHotelReservation = new HotelReservation("ABCD1234", "HOTEL9087", "HOTEL", "2022-10-01", "2022-10-10", "1000", true);
+    //     String[] details = new String[]{"ABCD1234", "HOTEL9087", "hotel", address.toString(), "2022-10-01", "2022-10-10", "1000"};
+    //     HotelReservation existingHotelReservation = new HotelReservation(details, true);
     //     try {
     //         accountManager.addReservation(existingHotelReservation);
     //     } catch (Exception e) {
@@ -104,7 +105,7 @@ public class AccountManagerTest {
     //     HouseReservation newHouseReservation = new HouseReservation("ABCD1234", "HOUSE0532", "2022-04-20", "2022-05-20", "15000", 3);
     //     accountManager.addReservation(newHouseReservation);
 
-    //     // Reset
+    //     Reset
     //     accountManager.deleteReservation(newHouseReservation);
     // }
 

@@ -14,6 +14,7 @@ public abstract class Reservation {
 	private String checkIn;
 	private String checkOut;
 	private String beds;
+	private String bedrooms;
 	private String bathrooms;
 	private String size;
 	private String price;
@@ -32,23 +33,24 @@ public abstract class Reservation {
 	 * @param checkIn 
 	 * @param checkOut
 	 */
-	public Reservation(String[] args) {
+	public Reservation(String accountNumber, String reservationNumber, String reservationType, String address, String checkIn, String checkOut, String beds, String bedrooms, String bathrooms, String size, String price, String email) {
 		// Validate parameters
-		Helper.validateParameters(args);
+		// Helper.validateParameters();
 
 		// Assign parameters to object
-		this.accountNumber = args[0];
-		this.reservationNumber = args[1];
-		this.reservationType = args[2];
-		this.address = args[3];
-		this.checkIn = args[4];
-		this.checkOut = args[5];
-		this.beds = args[6];
-		this.bathrooms = args[7];
-		this.size = args[8];
-		this.price = args[9];
+		this.accountNumber = accountNumber;
+		this.reservationNumber = reservationNumber;
+		this.reservationType = reservationType;
+		this.address = address;
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
+		this.beds = beds;
+		this.bedrooms = bedrooms;
+		this.bathrooms = bathrooms;
+		this.size = size;
+		this.price = price;
 		// If lodge has email assign it, otherwise null
-		this.email = args.length == 10 ? args[10] : null;
+		this.email = email;
 		this.nights = calculateNights();
 		this.total = calculatePrice();
 	}
@@ -59,23 +61,24 @@ public abstract class Reservation {
 	 * @param hasFullKitchen
 	 * @param hasLoft
 	 */
-	public Reservation(String[] args, boolean hasFullKitchen, boolean hasLoft) {
+	public Reservation(String accountNumber, String reservationNumber, String reservationType, String address, String checkIn, String checkOut, String beds, String bedrooms, String bathrooms, String size, String price, String email, boolean hasFullKitchen, boolean hasLoft) {
 		// Validate parameters
-		Helper.validateParameters(args);
+		// Helper.validateParameters();
 
 		// Assign parameters to object
-		this.accountNumber = args[0];
-		this.reservationNumber = args[1];
-		this.reservationType = args[2];
-		this.address = args[3];
-		this.checkIn = args[4];
-		this.checkOut = args[5];
-		this.beds = args[6];
-		this.bathrooms = args[7];
-		this.size = args[8];
-		this.price = args[9];
+		this.accountNumber = accountNumber;
+		this.reservationNumber = reservationNumber;
+		this.reservationType = reservationType;
+		this.address = address;
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
+		this.beds = beds;
+		this.bedrooms = bedrooms;
+		this.bathrooms = bathrooms;
+		this.size = size;
+		this.price = price;
 		// If lodge has email assign it, otherwise null
-		this.email = args.length == 10 ? args[10] : null;
+		this.email = email;
 		this.nights = calculateNights();
 		this.total = calculatePrice();
 		this.hasFullKitchen = hasFullKitchen;
@@ -87,23 +90,24 @@ public abstract class Reservation {
 	 * @param args
 	 * @param hasKitchenette
 	 */
-	public Reservation(String[] args, boolean hasKitchenette) {
+	public Reservation(String accountNumber, String reservationNumber, String reservationType, String address, String checkIn, String checkOut, String size, String price, String email, boolean hasKitchenette) {
 		// Validate parameters
-		Helper.validateParameters(args);
+		// Helper.validateParameters();
 
 		// Assign parameters to object
-		this.accountNumber = args[0];
-		this.reservationNumber = args[1];
-		this.reservationType = args[2];
-		this.address = args[3];
-		this.checkIn = args[4];
-		this.checkOut = args[5];
-		this.beds = args[6];
-		this.bathrooms = args[7];
-		this.size = args[8];
-		this.price = args[9];
+		this.accountNumber = accountNumber;
+		this.reservationNumber = reservationNumber;
+		this.reservationType = reservationType;
+		this.address = address;
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
+		this.beds = "2";
+		this.bedrooms = "1";
+		this.bathrooms = "1";
+		this.size = size;
+		this.price = price;
 		// If lodge has email assign it, otherwise null
-		this.email = args.length == 10 ? args[10] : null;
+		this.email = email;
 		this.nights = calculateNights();
 		this.total = calculatePrice();
 		this.hasKitchenette = hasKitchenette;
@@ -114,23 +118,24 @@ public abstract class Reservation {
 	 * @param args
 	 * @param floorCount
 	 */
-	public Reservation(String[] args, int floorCount) {
+	public Reservation(String accountNumber, String reservationNumber, String reservationType, String address, String checkIn, String checkOut, String beds, String bedrooms, String bathrooms, String size, String price, String email, int floorCount) {
 		// Validate parameters
-		Helper.validateParameters(args);
+		// Helper.validateParameters();
 
 		// Assign parameters to object
-		this.accountNumber = args[0];
-		this.reservationNumber = args[1];
-		this.reservationType = args[2];
-		this.address = args[3];
-		this.checkIn = args[4];
-		this.checkOut = args[5];
-		this.beds = args[6];
-		this.bathrooms = args[7];
-		this.size = args[8];
-		this.price = args[9];
+		this.accountNumber = accountNumber;
+		this.reservationNumber = reservationNumber;
+		this.reservationType = reservationType;
+		this.address = address;
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
+		this.beds = beds;
+		this.bedrooms = bedrooms;
+		this.bathrooms = bathrooms;
+		this.size = size;
+		this.price = price;
 		// If lodge has email assign it, otherwise null
-		this.email = args.length == 10 ? args[10] : null;
+		this.email = email;
 		this.nights = calculateNights();
 		this.total = calculatePrice();
 		this.floorCount = floorCount;

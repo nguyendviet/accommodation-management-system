@@ -7,9 +7,9 @@ public class HotelReservation extends Reservation {
 	 * @param args 
 	 * @param hasKitchenette
 	 */
-	public HotelReservation(String[] args, boolean hasKitchenette) {
+	public HotelReservation(String accountNumber, String reservationNumber, String reservationType, String address, String checkIn, String checkOut, String size, String price, String email, boolean hasKitchenette) {
 		// Call parent's constructor
-		super(args);
+		super(accountNumber, reservationNumber, reservationType, address, checkIn, checkOut, size, price, email, hasKitchenette);
 	}
 
 	/**

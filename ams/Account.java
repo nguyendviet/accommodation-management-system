@@ -51,7 +51,7 @@ public class Account {
 
 		// Create a constructor of file class and parsing an XML file 
 		try { 
-			File accountFile = new File("./accounts/" + accountNumber +"/acc" + accountNumber + ".xml");  
+			File accountFile = new File("./accounts/" + accountNumber +"/acc" + accountNumber + ".xml");
 			boolean exists = accountFile.exists();
 			if (!exists) {
 				throw new IllegalLoadException(accountNumber);
@@ -144,7 +144,7 @@ public class Account {
 	 * @param accountNumber 
 	 * @return
 	 */
-	public void saveToFile(String accountNumber) throws DuplicateObjectException {
+	public void saveToFile() throws DuplicateObjectException {
 		File folder = new File("./accounts/" + accountNumber);
 		boolean exists = folder.exists();
 		if (exists) {

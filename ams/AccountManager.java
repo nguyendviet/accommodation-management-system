@@ -29,7 +29,7 @@ public class AccountManager {
 			throw new DuplicateObjectException(account);
 		}
 		this.account = account;
-		this.account.saveToFile(account.getAccountNumber());
+		this.account.saveToFile();
 	}
 
 	/**
@@ -45,8 +45,10 @@ public class AccountManager {
 		if (!exists) {
 			throw new IllegalLoadException(accountNumber);
 		}
+
 		Account loadedAccount = new Account(accountNumber);
 		this.account = loadedAccount;
+		
 		return loadedAccount;
 	}
 
@@ -84,10 +86,10 @@ public class AccountManager {
 		if (exists) {
 			throw new DuplicateObjectException(reservation);
 		}
+		// Add reservation to account
 		this.account.addReservation(reservation);
-		File accountFile = Helper.getFilePath(accountNumber, accountNumber, "acc");
-		saveToFile(accountFile.toString(), account.toString());
-		saveToFile(reservationFile.toString(), reservation.toString());
+		// Update account file
+		this.account.saveToFile();
 	}
 
 	/**
