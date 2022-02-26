@@ -37,7 +37,7 @@ public class AccountManager {
 	 * If file not found, throw IllegalLoadException.
 	 * @param accountNumber
 	 */
-	public Account openFromFile(String accountNumber) throws IllegalLoadException {
+	public void openFromFile(String accountNumber) throws IllegalLoadException {
 		Helper.validateParameters(accountNumber);
 
 		File accountFile = Helper.getFilePath(accountNumber, accountNumber, "acc");
@@ -48,8 +48,6 @@ public class AccountManager {
 
 		Account loadedAccount = new Account(accountNumber);
 		this.account = loadedAccount;
-		
-		return loadedAccount;
 	}
 
 	/**
@@ -158,6 +156,14 @@ public class AccountManager {
 			throw new IllegalLoadException(fileName);
 		}
 		account.deleteReservation(fileName);
+	}
+
+	public String toString() {
+		return account.toString();
+	}
+
+	public String getAccountNumber() {
+		return account.getAccountNumber();
 	}
 
 	/**

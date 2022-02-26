@@ -285,10 +285,9 @@ public class Account {
 	}
 
 	public void deleteReservation(String fileName) throws IllegalOperationException {
+		// Delete reservation file
 		Helper.deleteFile("./accounts/" + accountNumber + "/res" + fileName + ".xml");
 		// Update content of account
-		System.out.println("reservations: " + reservations.toString());
-		System.out.println("index of: " + fileName + " " + reservations.indexOf(fileName));
 		reservations.remove(reservations.indexOf(fileName));
 		saveToFile();
 	}
