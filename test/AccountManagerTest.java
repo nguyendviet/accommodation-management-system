@@ -12,11 +12,11 @@ public class AccountManagerTest {
     private static AccountManager accountManager = new AccountManager();
 
     public static void main(String []args) {
-        createNewAccountTest();
-        openFromFileTest();
+        // createNewAccountTest();
+        // openFromFileTest();
         // saveToFileTest();
-        addReservationTest();
-        // deleteReservationTest();
+        // addReservationTest();
+        deleteReservationTest();
     }
 
     public static void createNewAccountTest() {
@@ -102,20 +102,22 @@ public class AccountManagerTest {
 
         System.out.println("\nAdd a new reservation.");
         HouseReservation newHouseReservation = new HouseReservation("ABCD1234", "HOUSE0532", "house", address.toString(), "2022-04-20", "2022-05-20", "2", "3", "2", "2000", "15000", null, 3);
-        // accountManager.addReservation(newHouseReservation);
         Account account = accountManager.openFromFile(newHouseReservation.getAccountNumber());
         System.out.println("Account before adding:");
         System.out.println(Helper.beautifyXml(account.toString(), 2));
-        account.addReservation(newHouseReservation);
+        accountManager.addReservation(newHouseReservation);
         System.out.println("Account after adding:");
         System.out.println(Helper.beautifyXml(account.toString(), 2));
         // Reset
         // accountManager.deleteReservation(newHouseReservation);
     }
 
-    // public static void deleteReservationTest() {
-    //     accountManager.openFromFile("ABCD1234");
-    //     HouseReservation newHouseReservation = new HouseReservation("ABCD1234", "HOUSE0532", "2022-04-20", "2022-05-20", "15000", 3);
-    //     accountManager.deleteReservation(newHouseReservation);
-    // }
+    public static void deleteReservationTest() {
+        accountManager.openFromFile("ABCD1234");
+        Address address = new Address("street", "city", "state", "zipcode");
+        HouseReservation newHouseReservation = new HouseReservation("ABCD1234", "HOUSE9999", "house", address.toString(), "2022-04-20", "2022-05-20", "2", "3", "2", "2000", "15000", null, 3);
+        // accountManager.addReservation(newHouseReservation);
+        
+        accountManager.deleteReservation("HOUSE9999");
+    }
 }

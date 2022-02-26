@@ -71,16 +71,20 @@ public class Account {
 			this.phoneNumber = Helper.getValueFromTag("phoneNumber", document);
 			this.email = Helper.getValueFromTag("email", document);
 			this.reservations = new ArrayList<String>();
-			
-			NodeList reservationList = document.getElementsByTagName("reservations");
 
-			for (int i = 0; i < reservationList.getLength(); i++) {
-				Node reservationNode = reservationList.item(i);
-				if (reservationNode.getNodeType() == Node.ELEMENT_NODE) {
-					Element eElement = (Element) reservationNode;
-					String reservationNumber = eElement.getAttribute("reservationNumber");
-					System.out.println(reservationNumber);
-					this.reservations.add(reservationNumber);
+			NodeList reservationsList = document.getElementsByTagName("reservations");
+			for (int i = 0; i < reservationsList.getLength(); i++) {
+				Node reservationsNode = reservationsList.item(i);
+				if (reservationsNode.getNodeType() == Node.ELEMENT_NODE) {
+					NodeList reservationList = ((Element) reservationsNode).getElementsByTagName("reservation");
+					for (int j = 0; j < reservationList.getLength(); j++) {
+						Node reservationNode = reservationList.item(j);
+						if (reservationNode.getNodeType() == Node.ELEMENT_NODE) {
+							Element reservationE = (Element) reservationNode;
+							String reservationNumber = reservationE.getElementsByTagName("reservationNumber").item(0).getTextContent();
+							this.reservations.add(reservationNumber);
+						}
+					}
 				}
 			}
 		} catch (Exception e) {  
@@ -98,7 +102,12 @@ public class Account {
 			for (int i = 0; i < reservations.size(); i++) {
 				String reservationNumber = reservations.get(i);
 				if (reservationNumber != "") {
-					reservationNumbers.append("<reservation>" + reservationNumber + "</reservation>");
+					reservationNumbers.append(
+						"<reservation>" + 
+							"<reservationNumber>" +
+								reservationNumber + 
+							"</reservationNumber>" +
+						"</reservation>");
 				}
 			}
 		}
@@ -258,6 +267,7 @@ public class Account {
 	public String addReservation(HouseReservation houseReservation) throws DuplicateObjectException {
 		Helper.validateParameters(houseReservation.toString());
 		this.reservations.add(houseReservation.getReservationNumber());
+		System.out.println("this res: " + this.reservations.toString());
 		this.saveToFile();
 		this.saveToFile(houseReservation);
 		return houseReservation.getReservationNumber();
@@ -274,8 +284,13 @@ public class Account {
 		// TODO implement here
 	}
 
-	public void deleteReservation(Reservation reservation) throws IllegalOperationException {
-		reservations.remove(reservations.indexOf(reservation.getReservationNumber()));
+	public void deleteReservation(String fileName) throws IllegalOperationException {
+		Helper.deleteFile("./accounts/" + accountNumber + "/res" + fileName + ".xml");
+		// Update content of account
+		System.out.println("reservations: " + reservations.toString());
+		System.out.println("index of: " + fileName + " " + reservations.indexOf(fileName));
+		reservations.remove(reservations.indexOf(fileName));
+		saveToFile();
 	}
 
 	/**

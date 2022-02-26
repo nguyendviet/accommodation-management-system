@@ -151,13 +151,13 @@ public class AccountManager {
 	 * @param reservationNumber
 	 * @return
 	 */
-	public void deleteReservation(Reservation reservation) throws IllegalLoadException {
-		Helper.deleteFile("./accounts/" + account.getAccountNumber() + "/res" + reservation.getReservationNumber() + ".xml");
-		account.deleteReservation(reservation);
-		String accountNum = account.getAccountNumber();
-		String file = "./accounts/" + accountNum + "/acc" + accountNum + ".xml";
-		String content = account.toString();
-		saveToFile(file, content);
+	public void deleteReservation(String fileName) throws IllegalLoadException {
+		File file = new File("./accounts/" + account.getAccountNumber() + "/res" + fileName + ".xml");
+		boolean exists = file.exists();
+		if (!exists) {
+			throw new IllegalLoadException(fileName);
+		}
+		account.deleteReservation(fileName);
 	}
 
 	/**
