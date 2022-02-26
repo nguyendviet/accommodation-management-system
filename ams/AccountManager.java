@@ -91,20 +91,45 @@ public class AccountManager {
 		this.account.saveToFile();
 	}
 
-	public void addReservation(HouseReservation reservation) throws DuplicateObjectException {
-		Helper.validateParameters(reservation.toString());
+	public void addReservation(CabinReservation cabinReservation) throws DuplicateObjectException {
+		Helper.validateParameters(cabinReservation.toString());
 
-		String accountNumber = reservation.getAccountNumber();
-		String reservationNumber = reservation.getReservationNumber();
+		String accountNumber = cabinReservation.getAccountNumber();
+		String reservationNumber = cabinReservation.getReservationNumber();
 		File reservationFile = Helper.getFilePath(accountNumber, reservationNumber, "res");
 		boolean exists = reservationFile.exists();
 		if (exists) {
-			throw new DuplicateObjectException(reservation);
+			throw new DuplicateObjectException(cabinReservation);
 		}
-		// Add reservation to account
-		this.account.addReservation(reservation);
+		// Add cabinReservation to account
+		this.account.addReservation(cabinReservation);
 		// Update account file
 		this.account.saveToFile();
+		this.account.saveToFile(cabinReservation);
+	}
+
+	/**
+	 * Add reservation to a new file. 
+	 * If duplicate found, throw DuplicateObjectException.
+	 * @param houseReservation
+	 * @return
+	 */
+	public void addReservation(HouseReservation houseReservation) throws DuplicateObjectException {
+		Helper.validateParameters(houseReservation.toString());
+
+		String accountNumber = houseReservation.getAccountNumber();
+		String reservationNumber = houseReservation.getReservationNumber();
+		File reservationFile = Helper.getFilePath(accountNumber, reservationNumber, "res");
+		boolean exists = reservationFile.exists();
+		if (exists) {
+			throw new DuplicateObjectException(houseReservation);
+		}
+		// Add houseReservation to account
+		this.account.addReservation(houseReservation);
+		// Update account file
+		this.account.saveToFile();
+		// Save reservation file
+		this.account.saveToFile(houseReservation);
 	}
 
 	/**

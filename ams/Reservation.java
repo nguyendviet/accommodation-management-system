@@ -35,7 +35,7 @@ public abstract class Reservation {
 	 */
 	public Reservation(String accountNumber, String reservationNumber, String reservationType, String address, String checkIn, String checkOut, String beds, String bedrooms, String bathrooms, String size, String price, String email) {
 		// Validate parameters
-		// Helper.validateParameters();
+		Helper.validateParameters(accountNumber, reservationNumber, reservationType, address, checkIn, checkOut, beds, bedrooms, bathrooms, size, price);
 
 		// Assign parameters to object
 		this.accountNumber = accountNumber;
@@ -63,7 +63,7 @@ public abstract class Reservation {
 	 */
 	public Reservation(String accountNumber, String reservationNumber, String reservationType, String address, String checkIn, String checkOut, String beds, String bedrooms, String bathrooms, String size, String price, String email, boolean hasFullKitchen, boolean hasLoft) {
 		// Validate parameters
-		// Helper.validateParameters();
+		Helper.validateParameters(accountNumber, reservationNumber, reservationType, address, checkIn, checkOut, beds, bedrooms, bathrooms, size, price);
 
 		// Assign parameters to object
 		this.accountNumber = accountNumber;
@@ -92,7 +92,7 @@ public abstract class Reservation {
 	 */
 	public Reservation(String accountNumber, String reservationNumber, String reservationType, String address, String checkIn, String checkOut, String size, String price, String email, boolean hasKitchenette) {
 		// Validate parameters
-		// Helper.validateParameters();
+		Helper.validateParameters(accountNumber, reservationNumber, reservationType, address, checkIn, checkOut, size, price);
 
 		// Assign parameters to object
 		this.accountNumber = accountNumber;
@@ -120,7 +120,7 @@ public abstract class Reservation {
 	 */
 	public Reservation(String accountNumber, String reservationNumber, String reservationType, String address, String checkIn, String checkOut, String beds, String bedrooms, String bathrooms, String size, String price, String email, int floorCount) {
 		// Validate parameters
-		// Helper.validateParameters();
+		Helper.validateParameters(accountNumber, reservationNumber, reservationType, address, checkIn, checkOut, beds, bedrooms, bathrooms, size, price);
 
 		// Assign parameters to object
 		this.accountNumber = accountNumber;

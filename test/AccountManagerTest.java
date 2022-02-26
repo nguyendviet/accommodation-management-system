@@ -39,7 +39,7 @@ public class AccountManagerTest {
         Helper.deleteFile("./accounts/" + newAccount.getAccountNumber());
         try {
             accountManager.createNewAccount(newAccount);
-            System.out.println("✅ Account created successfully.");
+            System.out.println("Account created successfully.");
             Account loadedAccount = accountManager.openFromFile(newAccount.getAccountNumber());
             System.out.println(Helper.beautifyXml(loadedAccount.toString(), 2));
         } catch (Exception e) {
@@ -52,7 +52,7 @@ public class AccountManagerTest {
         
         System.out.println("\nOpen a file that already exists.");
         Account loadedAccount = accountManager.openFromFile("ABCD1234");
-        System.out.println("✅ Account " + loadedAccount.getAccountNumber() + " loaded successfully.");
+        System.out.println("Account " + loadedAccount.getAccountNumber() + " loaded successfully.");
         System.out.println(Helper.beautifyXml(loadedAccount.toString(), 2));
 
         System.out.println("\nOpen a file that doesn't exist.");
@@ -77,7 +77,7 @@ public class AccountManagerTest {
     //     accountManager.saveToFile("./accounts/ABCD1234/accABCD1234.xml", loadedAccount.toString());
     //     System.out.println("Account details after:");
     //     System.out.println(Helper.beautifyXml(loadedAccount.toString(), 2));
-    //     System.out.println("✅ File updated successfully.");
+    //     System.out.println("File updated successfully.");
 
     //     // Reset
     //     Address oldAddress = new Address("9082 Example St.", "Big City", "Small", "10942");

@@ -93,7 +93,7 @@ public class Account {
 	 */
 	public String toString() {
 		StringBuilder reservationNumbers = new StringBuilder();
-		// System.out.println("this reservations" + reservations.toString() + reservations.size());
+
 		if (!reservations.isEmpty()) {
 			for (int i = 0; i < reservations.size(); i++) {
 				String reservationNumber = reservations.get(i);
@@ -102,6 +102,7 @@ public class Account {
 				}
 			}
 		}
+
 		return
 			"<account>" + 
 				"<accountNumber>" + accountNumber + "</accountNumber>" +
@@ -163,6 +164,39 @@ public class Account {
 		}
 	}
 
+	/**
+	 * Save cabinReservation to file.
+	 * @param cabinReservation
+	 * @throws DuplicateObjectException
+	 */
+	public void saveToFile(CabinReservation cabinReservation) throws DuplicateObjectException {
+		try (
+			FileWriter fw = new FileWriter("./accounts/" + accountNumber + "/res" + cabinReservation.getReservationNumber() + ".xml")) {
+			fw.write(Helper.beautifyXml(cabinReservation.toString(), 2));
+		} catch (Exception e) {
+			e.printStackTrace();  
+		}
+	}
+
+	/**
+	 * Save hotelReservation to file.
+	 * @param hotelReservation
+	 * @throws DuplicateObjectException
+	 */
+	public void saveToFile(HotelReservation hotelReservation) throws DuplicateObjectException {
+		try (
+			FileWriter fw = new FileWriter("./accounts/" + accountNumber + "/res" + hotelReservation.getReservationNumber() + ".xml")) {
+			fw.write(Helper.beautifyXml(hotelReservation.toString(), 2));
+		} catch (Exception e) {
+			e.printStackTrace();  
+		}
+	}
+
+	/**
+	 * Save houseReservation to file.
+	 * @param houseReservation
+	 * @throws DuplicateObjectException
+	 */
 	public void saveToFile(HouseReservation houseReservation) throws DuplicateObjectException {
 		try (
 			FileWriter fw = new FileWriter("./accounts/" + accountNumber + "/res" + houseReservation.getReservationNumber() + ".xml")) {
@@ -176,7 +210,7 @@ public class Account {
 	 * Add reservation object to the ArrayList of Reservation objects (check for duplicates)
 	 * and return the reservation number.
 	 * If duplicate found, throw DuplicateObjectException.
-	 * @param reservation Add reservation to the currently loaded Account
+	 * @param reservation
 	 * @return
 	 */
 	public String addReservation(Reservation reservation) throws DuplicateObjectException {
@@ -187,25 +221,46 @@ public class Account {
 		return reservation.getReservationNumber();
 	}
 
-	public String addReservation(CabinReservation reservation) throws DuplicateObjectException {
-		Helper.validateParameters(reservation.toString());
-		this.reservations.add(reservation.getReservationNumber());
-		return reservation.getReservationNumber();
-	}
-
-	public String addReservation(HotelReservation reservation) throws DuplicateObjectException {
-		Helper.validateParameters(reservation.toString());
-		this.reservations.add(reservation.getReservationNumber());
-		return reservation.getReservationNumber();
-	}
-
-	public String addReservation(HouseReservation reservation) throws DuplicateObjectException {
-		Helper.validateParameters(reservation.toString());
-		this.reservations.add(reservation.getReservationNumber());
-		System.out.println("this save to file:");
+	/**
+	 * Add cabinReservation to the account
+	 * @param cabinReservation
+	 * @return
+	 * @throws DuplicateObjectException
+	 */
+	public String addReservation(CabinReservation cabinReservation) throws DuplicateObjectException {
+		Helper.validateParameters(cabinReservation.toString());
+		this.reservations.add(cabinReservation.getReservationNumber());
 		this.saveToFile();
-		this.saveToFile(reservation);
-		return reservation.getReservationNumber();
+		this.saveToFile(cabinReservation);
+		return cabinReservation.getReservationNumber();
+	}
+
+	/**
+	 * Add hotelReservation to the account
+	 * @param hotelReservation
+	 * @return
+	 * @throws DuplicateObjectException
+	 */
+	public String addReservation(HotelReservation hotelReservation) throws DuplicateObjectException {
+		Helper.validateParameters(hotelReservation.toString());
+		this.reservations.add(hotelReservation.getReservationNumber());
+		this.saveToFile();
+		this.saveToFile(hotelReservation);
+		return hotelReservation.getReservationNumber();
+	}
+
+	/**
+	 * Add houseReservation to the account
+	 * @param houseReservation
+	 * @return
+	 * @throws DuplicateObjectException
+	 */
+	public String addReservation(HouseReservation houseReservation) throws DuplicateObjectException {
+		Helper.validateParameters(houseReservation.toString());
+		this.reservations.add(houseReservation.getReservationNumber());
+		this.saveToFile();
+		this.saveToFile(houseReservation);
+		return houseReservation.getReservationNumber();
 	}
 
 	/**
@@ -220,7 +275,7 @@ public class Account {
 	}
 
 	public void deleteReservation(Reservation reservation) throws IllegalOperationException {
-		reservations.remove(reservations.indexOf(reservation));
+		reservations.remove(reservations.indexOf(reservation.getReservationNumber()));
 	}
 
 	/**
