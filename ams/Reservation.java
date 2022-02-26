@@ -28,7 +28,6 @@ public abstract class Reservation {
 	private String email = null;
 	private String status = "draft";
 	private String nights;
-	private String total;
 	private boolean hasFullKitchen;
 	private boolean hasLoft;
 	private boolean hasKitchenette;
@@ -40,9 +39,9 @@ public abstract class Reservation {
 	 * @param checkIn 
 	 * @param checkOut
 	 */
-	public Reservation(String accountNumber, String reservationNumber, String reservationType, String address, String checkIn, String checkOut, String beds, String bedrooms, String bathrooms, String size, String price, String email) {
+	public Reservation(String accountNumber, String reservationNumber, String reservationType, String address, String checkIn, String checkOut, String beds, String bedrooms, String bathrooms, String sizee, String email) {
 		// Validate parameters
-		Helper.validateParameters(accountNumber, reservationNumber, reservationType, address, checkIn, checkOut, beds, bedrooms, bathrooms, size, price);
+		Helper.validateParameters(accountNumber, reservationNumber, reservationType, address, checkIn, checkOut, beds, bedrooms, bathrooms, size);
 
 		// Assign parameters to object
 		this.accountNumber = accountNumber;
@@ -55,11 +54,10 @@ public abstract class Reservation {
 		this.bedrooms = bedrooms;
 		this.bathrooms = bathrooms;
 		this.size = size;
-		this.price = price;
 		// If lodge has email assign it, otherwise null
 		this.email = email;
 		this.nights = calculateNights();
-		this.total = calculatePrice();
+		this.price = calculatePrice();
 	}
 
 	/**
@@ -68,9 +66,9 @@ public abstract class Reservation {
 	 * @param hasFullKitchen
 	 * @param hasLoft
 	 */
-	public Reservation(String accountNumber, String reservationNumber, String reservationType, String address, String checkIn, String checkOut, String beds, String bedrooms, String bathrooms, String size, String price, String email, boolean hasFullKitchen, boolean hasLoft) {
+	public Reservation(String accountNumber, String reservationNumber, String reservationType, String address, String checkIn, String checkOut, String beds, String bedrooms, String bathrooms, String size, String email, boolean hasFullKitchen, boolean hasLoft) {
 		// Validate parameters
-		Helper.validateParameters(accountNumber, reservationNumber, reservationType, address, checkIn, checkOut, beds, bedrooms, bathrooms, size, price);
+		Helper.validateParameters(accountNumber, reservationNumber, reservationType, address, checkIn, checkOut, beds, bedrooms, bathrooms, size);
 
 		// Assign parameters to object
 		this.accountNumber = accountNumber;
@@ -83,11 +81,10 @@ public abstract class Reservation {
 		this.bedrooms = bedrooms;
 		this.bathrooms = bathrooms;
 		this.size = size;
-		this.price = price;
 		// If lodge has email assign it, otherwise null
 		this.email = email;
 		this.nights = calculateNights();
-		this.total = calculatePrice();
+		this.price = calculatePrice();
 		this.hasFullKitchen = hasFullKitchen;
 		this.hasLoft = hasLoft;
 	}
@@ -97,9 +94,9 @@ public abstract class Reservation {
 	 * @param args
 	 * @param hasKitchenette
 	 */
-	public Reservation(String accountNumber, String reservationNumber, String reservationType, String address, String checkIn, String checkOut, String size, String price, String email, boolean hasKitchenette) {
+	public Reservation(String accountNumber, String reservationNumber, String reservationType, String address, String checkIn, String checkOut, String size, String email, boolean hasKitchenette) {
 		// Validate parameters
-		Helper.validateParameters(accountNumber, reservationNumber, reservationType, address, checkIn, checkOut, size, price);
+		Helper.validateParameters(accountNumber, reservationNumber, reservationType, address, checkIn, checkOut, size);
 
 		// Assign parameters to object
 		this.accountNumber = accountNumber;
@@ -112,11 +109,10 @@ public abstract class Reservation {
 		this.bedrooms = "1";
 		this.bathrooms = "1";
 		this.size = size;
-		this.price = price;
 		// If lodge has email assign it, otherwise null
 		this.email = email;
 		this.nights = calculateNights();
-		this.total = calculatePrice();
+		this.price = calculatePrice();
 		this.hasKitchenette = hasKitchenette;
 	}
 
@@ -125,9 +121,9 @@ public abstract class Reservation {
 	 * @param args
 	 * @param floorCount
 	 */
-	public Reservation(String accountNumber, String reservationNumber, String reservationType, String address, String checkIn, String checkOut, String beds, String bedrooms, String bathrooms, String size, String price, String email, int floorCount) {
+	public Reservation(String accountNumber, String reservationNumber, String reservationType, String address, String checkIn, String checkOut, String beds, String bedrooms, String bathrooms, String size, String email, int floorCount) {
 		// Validate parameters
-		Helper.validateParameters(accountNumber, reservationNumber, reservationType, address, checkIn, checkOut, beds, bedrooms, bathrooms, size, price);
+		Helper.validateParameters(accountNumber, reservationNumber, reservationType, address, checkIn, checkOut, beds, bedrooms, bathrooms, size);
 
 		// Assign parameters to object
 		this.accountNumber = accountNumber;
@@ -140,11 +136,10 @@ public abstract class Reservation {
 		this.bedrooms = bedrooms;
 		this.bathrooms = bathrooms;
 		this.size = size;
-		this.price = price;
 		// If lodge has email assign it, otherwise null
 		this.email = email;
 		this.nights = calculateNights();
-		this.total = calculatePrice();
+		this.price = calculatePrice();
 		this.floorCount = floorCount;
 	}
 
@@ -217,8 +212,7 @@ public abstract class Reservation {
 			"<bathrooms>" + bathrooms + "</bathrooms>" +
 			"<size>" + size + "</size>" +
 			"<price>" + price + "</price>" + 
-			"<nights>" + nights + "</nights>" +
-			"<total>" + total + "</total>";
+			"<nights>" + nights + "</nights>";
 		
 		switch(reservationType) {
 			case "cabin":
@@ -315,6 +309,22 @@ public abstract class Reservation {
 		return price;
 	}
 
+	public String getSize() {
+		return size;
+	}
+
+	public boolean getFullKitchen() {
+		return hasFullKitchen;
+	}
+
+	public boolean getKitchenette() {
+		return hasKitchenette;
+	}
+
+	public String getBathrooms() {
+		return bathrooms;
+	}
+
 	/**
 	 * If for some reasons, cannot complete the reservation 
 	 * (e.g. lodge doesn't have available rooms at the time of booking), 
@@ -322,7 +332,8 @@ public abstract class Reservation {
 	 * @param status
 	 */
 	public void setStatus(String status) throws IllegalOperationException {
-		// TODO implement here
+		Helper.validateParameters(status);
+		this.status = status;
 	}
 
 	/**
@@ -332,7 +343,8 @@ public abstract class Reservation {
 	 * @param checkInDate
 	 */
 	public void setCheckIn(String checkInDate) throws IllegalOperationException {
-		// TODO implement here
+		Helper.validateParameters(checkInDate);
+		this.checkIn = checkInDate;
 	}
 
 	/**
@@ -342,7 +354,8 @@ public abstract class Reservation {
 	 * @param checkOutDate
 	 */
 	public void setCheckOut(String checkOutDate) throws IllegalOperationException {
-		// TODO implement here
+		Helper.validateParameters(checkOutDate);
+		this.checkOut = checkOutDate;
 	}
 
 }

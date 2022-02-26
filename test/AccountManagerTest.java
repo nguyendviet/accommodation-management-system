@@ -69,7 +69,7 @@ public class AccountManagerTest {
         Address address = new Address("street", "city", "state", "zipcode");
 
         System.out.println("\n📌 Add a reservation that already exists.");
-        HotelReservation existingHotelReservation = new HotelReservation("ABCD1234", "HOTEL9087", "hotel", address.toString(), "2022-10-01", "2022-11-01", "1000", "2000", null, true);
+        HotelReservation existingHotelReservation = new HotelReservation("ABCD1234", "HOTEL9087", "hotel", address.toString(), "2022-10-01", "2022-11-01", "1000", null, true);
         try {
             accountManager.addReservation(existingHotelReservation);
         } catch (Exception e) {
@@ -78,7 +78,7 @@ public class AccountManagerTest {
         }
 
         System.out.println("\n📌 Add a new reservation.");
-        HouseReservation newHouseReservation = new HouseReservation("ABCD1234", "HOUSE0532", "house", address.toString(), "2022-04-20", "2022-05-20", "2", "3", "2", "2000", "15000", null, 3);
+        HouseReservation newHouseReservation = new HouseReservation("ABCD1234", "HOUSE0532", "house", address.toString(), "2022-04-20", "2022-05-20", "2", "3", "2", "2000", null, 3);
         accountManager.openFromFile(newHouseReservation.getAccountNumber());
         // Clean up
         accountManager.deleteReservation(newHouseReservation.getReservationNumber());
@@ -98,7 +98,7 @@ public class AccountManagerTest {
         accountManager.openFromFile("ABCD1234");
         // Add new reservation to delete
         Address address = new Address("street", "city", "state", "zipcode");
-        HouseReservation newHouseReservation = new HouseReservation("ABCD1234", "HOUSE9999", "house", address.toString(), "2022-04-20", "2022-05-20", "2", "3", "2", "2000", "15000", null, 3);
+        HouseReservation newHouseReservation = new HouseReservation("ABCD1234", "HOUSE9999", "house", address.toString(), "2022-04-20", "2022-05-20", "2", "3", "2", "2000", null, 3);
         accountManager.addReservation(newHouseReservation);
         System.out.println("Account before deleting:");
         System.out.println(Helper.beautifyXml(accountManager.toString(), 2));

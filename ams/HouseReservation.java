@@ -8,9 +8,9 @@ public class HouseReservation extends Reservation {
 	 * @param args 
 	 * @param floorCount
 	 */
-	public HouseReservation(String accountNumber, String reservationNumber, String reservationType, String address, String checkIn, String checkOut, String beds, String bedrooms, String bathrooms, String size, String price, String email, int floorCount) {
+	public HouseReservation(String accountNumber, String reservationNumber, String reservationType, String address, String checkIn, String checkOut, String beds, String bedrooms, String bathrooms, String size, String email, int floorCount) {
 		// Call parent's constructor
-		super(accountNumber, reservationNumber, reservationType, address, checkIn, checkOut, beds, bedrooms, bathrooms, size, price, email, floorCount);
+		super(accountNumber, reservationNumber, reservationType, address, checkIn, checkOut, beds, bedrooms, bathrooms, size, email, floorCount);
 	}
 
 	/**
@@ -26,8 +26,12 @@ public class HouseReservation extends Reservation {
 	 * @return
 	 */
 	public String calculatePrice() {
-		// TODO implement here
-		return "";
+		int price = 120;
+		price *= Integer.parseInt(this.calculateNights());
+		if (Integer.parseInt(this.getSize()) > 900) {
+			price += 15;
+		}
+		return Integer.toString(price);
 	}
 
 }
