@@ -70,13 +70,18 @@ public class Helper {
         return folderPath;
     }
 
-    public static File getFilePath(String fileName, String fileType) {
+    public static File getFilePath(String accountNumber, String fileName, String fileType) {
         validateParameters(fileName, fileType);
         if (fileType != "acc" && fileType != "res") {
             throw new IllegalArgumentException("File fileType must be 'acc' or 'res'.");
         }
-        File filePath = new File("./accounts/" + fileName + "/" + fileType + fileName + ".xml");
+        File filePath = new File("./accounts/" + accountNumber + "/" + fileType + fileName + ".xml");
             return filePath;
     }
 
+    public static void checkPassingTest(String desire, String result) {
+        System.out.println("\tExpect: " + desire);
+        System.out.println("\tActual: " + result);
+        System.out.println("✅ Test pass: " + result.equals(desire));
+    }
 }

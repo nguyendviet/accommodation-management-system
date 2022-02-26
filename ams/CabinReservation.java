@@ -2,26 +2,14 @@ package ams;
 
 public class CabinReservation extends Reservation {
 
-	private boolean hasFullKitchen;
-	private boolean hasLoft;
-
 	/**
-	 * @param accountNumber 
-	 * @param reservationNumber 
-	 * @param address 
-	 * @param checkIn 
-	 * @param checkOut 
-	 * @param price 
+	 * @param args 
 	 * @param hasFullKitchen 
 	 * @param hasLoft
 	 */
-	public CabinReservation(String accountNumber, String reservationNumber, Address address, String checkIn, String checkOut, String price, boolean hasFullKitchen, boolean hasLoft) {
+	public CabinReservation(String[] args, boolean hasFullKitchen, boolean hasLoft) {
 		// Call parent's constructor
-		super(accountNumber, reservationNumber, address, checkIn, checkOut);
-		// Validate parameters 
-		Helper.validateParameters(accountNumber, reservationNumber, address.toString(), checkIn, checkOut);
-		this.hasFullKitchen = hasFullKitchen;
-		this.hasLoft = hasLoft;
+		super(args);
 	}
 
 	/**
@@ -31,19 +19,6 @@ public class CabinReservation extends Reservation {
 	public CabinReservation(String fileName) throws IllegalLoadException {
 		// Call parent's constructor
 		super(fileName);
-	}
-
-	/**
-	 * Overriding parent's method
-	 * @return String in XML format
-	 */
-	public String toString() {
-		return 
-			"<cabin>" + 
-				super.toString() + 
-				"<hasFullKitchen>" + hasFullKitchen + "</hasFullKitchen>" +
-				"<hasLoft>" + hasLoft + "</hasLoft>" + 
-			"</cabin>";
 	}
 
 	/**

@@ -2,25 +2,14 @@ package ams;
 
 public class HotelReservation extends Reservation {
 
-	private boolean hasKitchenette;
-
 	/**
 	 * 
-	 * @param accountNumber 
-	 * @param reservationNumber 
-	 * @param address 
-	 * @param checkIn 
-	 * @param checkOut 
-	 * @param price 
+	 * @param args 
 	 * @param hasKitchenette
 	 */
-	public HotelReservation(String accountNumber, String reservationNumber, Address address, String checkIn, String checkOut, String price, boolean hasKitchenette) {
+	public HotelReservation(String[] args, boolean hasKitchenette) {
 		// Call parent's constructor
-		super(accountNumber, reservationNumber, address, checkIn, checkOut);
-		// Validate parameters 
-		Helper.validateParameters(accountNumber, reservationNumber, address.toString(), checkIn, checkOut, price);
-		// Assign parameters's values to attributes
-		this.hasKitchenette = hasKitchenette;
+		super(args);
 	}
 
 	/**
@@ -30,18 +19,6 @@ public class HotelReservation extends Reservation {
 	public HotelReservation(String fileName) throws IllegalLoadException {
 		// Call parent's constructor
 		super(fileName);
-	}
-
-	/**
-	 * Overriding parent's method
-	 * @return String in XML format
-	 */
-	public String toString() {
-		return 
-			"<hotel>" + 
-				super.toString() + 
-				"<hasKitchenette>" + hasKitchenette + "</hasKitchenette>" +
-			"</hotel>";
 	}
 
 	/**

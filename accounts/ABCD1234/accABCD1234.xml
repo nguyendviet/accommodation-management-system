@@ -3,12 +3,53 @@
   <address>
     <street>9082 Example St.</street>
     <city>Big City</city>
-    <state>Small State</state>
-    <zipcode>99999</zipcode>
+    <state>Small</state>
+    <zipcode>10942</zipcode>
   </address>
   <phoneNumber>999-012-1304</phoneNumber>
-  <email/>
+  <email>email2@test.com</email>
   <reservations>
-    <reservation/>
+    <reservation>
+      <reservationNumber>HOTEL9087</reservationNumber>
+      <accountNumber>ABCD1234</accountNumber>
+      <address>
+          <street>9082 Example St.</street>
+          <city>Big City</city>
+          <state>Small State</state>
+          <zipcode>99999</zipcode>
+      </address>
+      <status>draft</status>
+      <checkIn>2022-02-12</checkIn>
+      <checkOut>2022-02-22</checkOut>
+      <price>2000</price>
+    </reservation>
+    <reservation>
+      <reservationNumber>HOTEL9087</reservationNumber>
+      <accountNumber>ABCD1234</accountNumber>
+      <address>
+          <street>9082 Example St.</street>
+          <city>Big City</city>
+          <state>Small State</state>
+          <zipcode>99999</zipcode>
+      </address>
+      <status>draft</status>
+      <checkIn>2022-02-12</checkIn>
+      <checkOut>2022-02-22</checkOut>
+      <price>2000</price>
+    </reservation>
+    <reservation>
+      <reservationNumber>HOTEL9087</reservationNumber>
+      <accountNumber>ABCD1234</accountNumber>
+      <address>
+          <street>9082 Example St.</street>
+          <city>Big City</city>
+          <state>Small State</state>
+          <zipcode>99999</zipcode>
+      </address>
+      <status>draft</status>
+      <checkIn>2022-02-12</checkIn>
+      <checkOut>2022-02-22</checkOut>
+      <price>2000</price>
+    </reservation>
   </reservations>
 </account>

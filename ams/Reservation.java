@@ -9,11 +9,22 @@ public abstract class Reservation {
 
 	protected String accountNumber;
 	protected String reservationNumber;
-	private Address address;
-	private String status = "draft";
+	private String reservationType;
+	private String address;
 	private String checkIn;
 	private String checkOut;
+	private String beds;
+	private String bathrooms;
+	private String size;
 	private String price;
+	private String email = null;
+	private String status = "draft";
+	private String nights;
+	private String total;
+	private boolean hasFullKitchen;
+	private boolean hasLoft;
+	private boolean hasKitchenette;
+	private int floorCount;
 
 	/**
 	 * @param accountNumber 
@@ -21,17 +32,108 @@ public abstract class Reservation {
 	 * @param checkIn 
 	 * @param checkOut
 	 */
-	public Reservation(String accountNumber, String reservationNumber, Address address, String checkIn, String checkOut) {
+	public Reservation(String[] args) {
 		// Validate parameters
-		Helper.validateParameters(accountNumber, reservationNumber, address.toString(), checkIn, checkOut);
+		Helper.validateParameters(args);
 
 		// Assign parameters to object
-		this.accountNumber = accountNumber;
-		this.reservationNumber = reservationNumber;
-		this.address = address;
-		this.checkIn = checkIn;
-		this.checkOut = checkOut;
-		this.price = calculatePrice();
+		this.accountNumber = args[0];
+		this.reservationNumber = args[1];
+		this.reservationType = args[2];
+		this.address = args[3];
+		this.checkIn = args[4];
+		this.checkOut = args[5];
+		this.beds = args[6];
+		this.bathrooms = args[7];
+		this.size = args[8];
+		this.price = args[9];
+		// If lodge has email assign it, otherwise null
+		this.email = args.length == 10 ? args[10] : null;
+		this.nights = calculateNights();
+		this.total = calculatePrice();
+	}
+
+	/**
+	 * Overloading constructor for Cabin reservation
+	 * @param args
+	 * @param hasFullKitchen
+	 * @param hasLoft
+	 */
+	public Reservation(String[] args, boolean hasFullKitchen, boolean hasLoft) {
+		// Validate parameters
+		Helper.validateParameters(args);
+
+		// Assign parameters to object
+		this.accountNumber = args[0];
+		this.reservationNumber = args[1];
+		this.reservationType = args[2];
+		this.address = args[3];
+		this.checkIn = args[4];
+		this.checkOut = args[5];
+		this.beds = args[6];
+		this.bathrooms = args[7];
+		this.size = args[8];
+		this.price = args[9];
+		// If lodge has email assign it, otherwise null
+		this.email = args.length == 10 ? args[10] : null;
+		this.nights = calculateNights();
+		this.total = calculatePrice();
+		this.hasFullKitchen = hasFullKitchen;
+		this.hasLoft = hasLoft;
+	}
+
+	/**
+	 * Overloading constructor for Hotel reservation
+	 * @param args
+	 * @param hasKitchenette
+	 */
+	public Reservation(String[] args, boolean hasKitchenette) {
+		// Validate parameters
+		Helper.validateParameters(args);
+
+		// Assign parameters to object
+		this.accountNumber = args[0];
+		this.reservationNumber = args[1];
+		this.reservationType = args[2];
+		this.address = args[3];
+		this.checkIn = args[4];
+		this.checkOut = args[5];
+		this.beds = args[6];
+		this.bathrooms = args[7];
+		this.size = args[8];
+		this.price = args[9];
+		// If lodge has email assign it, otherwise null
+		this.email = args.length == 10 ? args[10] : null;
+		this.nights = calculateNights();
+		this.total = calculatePrice();
+		this.hasKitchenette = hasKitchenette;
+	}
+
+	/**
+	 * Overloading constructor for House reservation
+	 * @param args
+	 * @param floorCount
+	 */
+	public Reservation(String[] args, int floorCount) {
+		// Validate parameters
+		Helper.validateParameters(args);
+
+		// Assign parameters to object
+		this.accountNumber = args[0];
+		this.reservationNumber = args[1];
+		this.reservationType = args[2];
+		this.address = args[3];
+		this.checkIn = args[4];
+		this.checkOut = args[5];
+		this.beds = args[6];
+		this.bathrooms = args[7];
+		this.size = args[8];
+		this.price = args[9];
+		// If lodge has email assign it, otherwise null
+		this.email = args.length == 10 ? args[10] : null;
+		this.nights = calculateNights();
+		this.total = calculatePrice();
+		this.floorCount = floorCount;
 	}
 
 	/**
@@ -50,19 +152,37 @@ public abstract class Reservation {
 			// Ceate an instance of builder to parse the specified xml reservationFile  
 			DocumentBuilder db = dbf.newDocumentBuilder();  
 			Document document = db.parse(reservationFile);
+			
+			// Assign values from file to object
+			this.accountNumber = Helper.getValueFromTag("accountNumber", document);
+			this.reservationNumber = Helper.getValueFromTag("reservationNumber", document);
+			this.reservationType = Helper.getValueFromTag("reservationType", document);
+			this.status = Helper.getValueFromTag("status", document);
+			this.checkIn = Helper.getValueFromTag("checkIn", document);
+			this.checkOut = Helper.getValueFromTag("checkOut", document);
+			this.beds = Helper.getValueFromTag("beds", document);
+			this.bathrooms = Helper.getValueFromTag("bathrooms", document);
+			this.size = Helper.getValueFromTag("size", document);
+			this.price = Helper.getValueFromTag("price", document);
+
 			String street = Helper.getValueFromTag("street", document);
 			String city = Helper.getValueFromTag("city", document);
 			String state = Helper.getValueFromTag("state", document);
 			String zipcode = Helper.getValueFromTag("zipcode", document);
-			
-			// Assign values from file to object
-			this.accountNumber = Helper.getValueFromTag("accountNumber", document);
-			this.address = new Address(street, city, state, zipcode);
-			this.status = Helper.getValueFromTag("status", document);
-			this.checkIn = Helper.getValueFromTag("checkIn", document);
-			this.checkOut = Helper.getValueFromTag("checkOut", document);
-			this.price = Helper.getValueFromTag("price", document);
-			
+			Address address = new Address(street, city, state, zipcode);
+			this.address = address.toString();
+
+			switch (this.reservationType) {
+				case "cabin":
+					this.hasFullKitchen = Boolean.parseBoolean(Helper.getValueFromTag("hasFullKitchen", document));
+					this.hasLoft = Boolean.parseBoolean(Helper.getValueFromTag("hasLoft", document));
+				case "hotel":
+					this.hasKitchenette = Boolean.parseBoolean(Helper.getValueFromTag("hasKitchenette", document));
+				case "house":
+					this.floorCount = Integer.parseInt(Helper.getValueFromTag("hasKitchenette", document));
+				default:
+					break;
+			}
 		} catch (Exception e) {  
 			e.printStackTrace();
 		}  
@@ -72,16 +192,48 @@ public abstract class Reservation {
 	 * @return
 	 */
 	public String toString() {
-		return
-			"<reservation>" + 
-				"<reservationNumber>" + reservationNumber + "</reservationNumber>" +
-				"<accountNumber>" + accountNumber + "</accountNumber>" +
-				address.toString() +
-				"<status>" + status + "</status>" +
-				"<checkIn>" + checkIn + "</checkIn>" +
-				"<checkOut>" + checkOut + "</checkOut>" +
-				"<price>" + price + "</price>" +
-			"</reservation>";
+		String defaultReservation = 
+			"<reservationNumber>" + reservationNumber + "</reservationNumber>" +
+			"<accountNumber>" + accountNumber + "</accountNumber>" +
+			"<reservationType>" + reservationType + "</reservationType>" +
+			address +
+			"<email>" + email + "</email>" +
+			"<status>" + status + "</status>" +
+			"<checkIn>" + checkIn + "</checkIn>" +
+			"<checkOut>" + checkOut + "</checkOut>" +
+			"<beds>" + beds + "</beds>" +
+			"<bathrooms>" + bathrooms + "</bathrooms>" +
+			"<size>" + size + "</size>" +
+			"<price>" + price + "</price>" + 
+			"<nights>" + nights + "</nights>" +
+			"<total>" + total + "</total>";
+		
+		switch(reservationType) {
+			case "cabin":
+				return
+					"<reservation>" +
+						defaultReservation +
+						"<hasFullKitchen>" + hasFullKitchen + "</hasFullKitchen>" +
+						"<hasLoft>" + hasLoft + "</hasLoft>" +
+					"</reservation>"; 
+			case "hotel":
+				return
+					"<reservation>" +
+						defaultReservation +
+						"<hasKitchenette>" + hasKitchenette + "</hasKitchenette>" +
+					"</reservation>";
+			case "house":
+				return
+				"<reservation>" +
+					defaultReservation +
+					"<floorCount>" + floorCount + "</floorCount>" +
+				"</reservation>";
+			default:
+				return
+					"<reservation>" +
+						defaultReservation +
+					"</reservation>";
+		}
 	}
 
 	/**
@@ -94,9 +246,9 @@ public abstract class Reservation {
 	 * Calculate the nights based on the class’s attributes checkIn and checkOut.
 	 * @return
 	 */
-	public int calculateNights() {
+	public String calculateNights() {
 		// TODO implement here
-		return 0;
+		return "0";
 	}
 
 	/**
@@ -121,7 +273,11 @@ public abstract class Reservation {
 		return reservationNumber;
 	}
 
-	public Address getAddress() {
+	public String getReservationType() {
+		return reservationType;
+	}
+
+	public String getAddress() {
 		return address;
 	}
 

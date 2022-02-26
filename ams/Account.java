@@ -3,7 +3,12 @@ import java.util.*;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
 import java.io.File;
+import java.io.FileWriter;
 
 public class Account {
 	
@@ -11,7 +16,7 @@ public class Account {
 	private Address address;
 	private String phoneNumber;
 	private String email = null;
-	private Vector<Reservation> reservations;
+	private Vector<String> reservations;
 
 	/**
 	 * Construct to create Account object and assign values for a new Account 
@@ -31,7 +36,7 @@ public class Account {
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
-		reservations = new Vector<Reservation>();
+		reservations = new Vector<String>();
 	}
 
 	/**
@@ -66,7 +71,15 @@ public class Account {
 			this.phoneNumber = Helper.getValueFromTag("phoneNumber", document);
 			this.email = Helper.getValueFromTag("email", document);
 			
-			reservations = new Vector<Reservation>();
+			NodeList reservationList = document.getElementsByTagName("reservations");
+
+			for (int i = 0; i < reservationList.getLength(); i++) {
+				Node reservationNode = reservationList.item(i);
+				if (reservationNode.getNodeType() == Node.ELEMENT_NODE) {
+					Element eElement = (Element) reservationNode;
+					System.out.println(eElement.getAttribute("reservationNumber"));
+				}
+			}
 		} catch (Exception e) {  
 			e.printStackTrace();
 		}  
@@ -76,14 +89,20 @@ public class Account {
 	 * @return String in XML format
 	 */
 	public String toString() {
-		return 
+		String reservationNumbers = "";
+		if (reservations != null) {
+			for (String reservationNumber : reservations) {
+				reservationNumbers += "<reservation>" + reservationNumber + "</reservation>";
+			}
+		}
+		return
 			"<account>" + 
 				"<accountNumber>" + accountNumber + "</accountNumber>" +
 				address.toString() +
 				"<phoneNumber>" + phoneNumber + "</phoneNumber>" + 
 				"<email>" + email + "</email>" + 
 				"<reservations>" +
-					"<reservation></reservation>" +
+					reservationNumbers +
 				"</reservations>" + 
 			"</account>";
 	}
@@ -122,11 +141,24 @@ public class Account {
 	/**
 	 * Save account information in file.
 	 * If found duplicate, throw DuplicateObjectException.
-	 * @param fileName 
+	 * @param accountNumber 
 	 * @return
 	 */
-	public void saveToFile(String fileName) throws DuplicateObjectException {
-		// TODO implement here
+	public void saveToFile(String accountNumber) throws DuplicateObjectException {
+		File folder = new File("./accounts/" + accountNumber);
+		boolean exists = folder.exists();
+		if (exists) {
+			throw new DuplicateObjectException(this);
+		}
+		// Make account folder
+		folder.mkdirs();
+		// Make account file with ocntent
+		try (
+			FileWriter fw = new FileWriter("./accounts/" + accountNumber + "/acc" + accountNumber + ".xml")) {
+			fw.write(Helper.beautifyXml(this.toString(), 2));
+		} catch (Exception e) {
+			e.printStackTrace();  
+		}
 	}
 
 	/**
@@ -137,8 +169,9 @@ public class Account {
 	 * @return
 	 */
 	public String addReservation(Reservation reservation) throws DuplicateObjectException {
-		// TODO implement here
-		return "";
+		Helper.validateParameters(reservation.toString());
+		this.reservations.add(reservation.getReservationNumber());
+		return reservation.getReservationNumber();
 	}
 
 	/**
@@ -150,6 +183,10 @@ public class Account {
 	 */
 	public void editReservation(Reservation reservation) throws IllegalOperationException {
 		// TODO implement here
+	}
+
+	public void deleteReservation(Reservation reservation) throws IllegalOperationException {
+		reservations.remove(reservations.indexOf(reservation));
 	}
 
 	/**

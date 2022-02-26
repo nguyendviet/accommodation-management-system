@@ -4,25 +4,13 @@ package ams;
  * 
  */
 public class HouseReservation extends Reservation {
-
-	private int floorCount;
-
 	/**
-	 * @param accountNumber 
-	 * @param reservationNumber 
-	 * @param address 
-	 * @param checkIn 
-	 * @param checkOut 
-	 * @param price 
+	 * @param args 
 	 * @param floorCount
 	 */
-	public HouseReservation(String accountNumber, String reservationNumber, Address address, String checkIn, String checkOut, String price, int floorCount) {
+	public HouseReservation(String[] args, int floorCount) {
 		// Call parent's constructor
-		super(accountNumber, reservationNumber, address, checkIn, checkOut);
-		// Validate parameters 
-		Helper.validateParameters(accountNumber, reservationNumber, address.toString(), checkIn, checkOut);
-		// Assign parameters's values to attributes
-		this.floorCount = floorCount;
+		super(args, floorCount);
 	}
 
 	/**
@@ -32,19 +20,6 @@ public class HouseReservation extends Reservation {
 	public HouseReservation(String fileName) throws IllegalLoadException {
 		// Call parent's constructor
 		super(fileName);
-	}
-
-	
-	/**
-	 * Overriding parent's method
-	 * @returns String in XML format
-	 */
-	public String toString() {
-		return 
-			"<house>" + 
-				super.toString() + 
-				"<floorCount>" + floorCount + "</floorCount>" +
-			"</house>";
 	}
 
 	/**

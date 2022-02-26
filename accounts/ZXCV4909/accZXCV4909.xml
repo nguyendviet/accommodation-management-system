@@ -8,7 +8,5 @@
   </address>
   <phoneNumber>test</phoneNumber>
   <email>test@test.com</email>
-  <reservations>
-    <reservation/>
-  </reservations>
+  <reservations/>
 </account>

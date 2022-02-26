@@ -3,13 +3,14 @@ package ams;
 import java.io.File;
 import java.io.FileWriter;
 
+import javax.naming.ldap.ExtendedRequest;
+
 public class AccountManager {
 
 	/**
 	 * Store and manage a single Account object at a time
 	 */
 	private Account account;
-	private Reservation reservation;
 
 	public AccountManager() {
 	}
@@ -22,19 +23,13 @@ public class AccountManager {
 	 */
 	public void createNewAccount(Account account) throws DuplicateObjectException {
 		Helper.validateParameters(account.toString());
-
-		String accountNumber = account.getAccountNumber();
-		File accountPath = Helper.getFolderPath(accountNumber);
-		boolean exists = accountPath.exists();
+		File accountFolder = new File("./accounts/" + account.getAccountNumber());
+		boolean exists = accountFolder.exists();
 		if (exists) {
 			throw new DuplicateObjectException(account);
 		}
-		// Create the new account folder
-		accountPath.mkdirs();
-		// Save the new account attributes
 		this.account = account;
-		// Save the account attributes to file
-		saveToFile(accountPath.toString(), "acc");
+		this.account.saveToFile(account.getAccountNumber());
 	}
 
 	/**
@@ -45,7 +40,7 @@ public class AccountManager {
 	public Account openFromFile(String accountNumber) throws IllegalLoadException {
 		Helper.validateParameters(accountNumber);
 
-		File accountFile = Helper.getFilePath(accountNumber, "acc");
+		File accountFile = Helper.getFilePath(accountNumber, accountNumber, "acc");
 		boolean exists = accountFile.exists();
 		if (!exists) {
 			throw new IllegalLoadException(accountNumber);
@@ -56,29 +51,19 @@ public class AccountManager {
 	}
 
 	/**
-	 * Save account information in file.
+	 * Save information in file.
 	 * @param filePath 
+	 * @param content 
 	 * @return
 	 */
-	public void saveToFile(String filePath, String fileType) {
-		Helper.validateParameters(filePath, fileType);
+	public void saveToFile(String filePath, String content) {
+		Helper.validateParameters(filePath, content);
 		
-		if (fileType == "acc") {
-			try (
-				FileWriter fw = new FileWriter(filePath + "/" + fileType + account.getAccountNumber() + ".xml")) {
-				fw.write(Helper.beautifyXml(account.toString(), 2));
-			} catch (Exception e) {
-				e.printStackTrace();  
-			}
-		} else if (fileType == "res") {
-			try (
-				FileWriter fw = new FileWriter(filePath + "/" + fileType + account.getAccountNumber() + ".xml")) {
-				fw.write(Helper.beautifyXml(reservation.toString(), 2));
-			} catch (Exception e) {
-				e.printStackTrace();  
-			}
-		} else {
-			throw new IllegalArgumentException("fileType must be 'acc' or 'res'.");
+		try (
+			FileWriter fw = new FileWriter(filePath)) {
+			fw.write(Helper.beautifyXml(content, 2));
+		} catch (Exception e) {
+			e.printStackTrace();  
 		}
 	}
 
@@ -92,14 +77,17 @@ public class AccountManager {
 		Helper.validateParameters(reservation.toString());
 
 		String accountNumber = reservation.getAccountNumber();
-		File reservationFile = Helper.getFilePath(accountNumber, "res");
+		this.account = openFromFile(accountNumber);
+		String reservationNumber = reservation.getReservationNumber();
+		File reservationFile = Helper.getFilePath(accountNumber, reservationNumber, "res");
 		boolean exists = reservationFile.exists();
 		if (exists) {
 			throw new DuplicateObjectException(reservation);
 		}
-		File accountPath = Helper.getFolderPath(accountNumber);
-		this.reservation = reservation;
-		saveToFile(accountPath.toString(), "res");
+		this.account.addReservation(reservation);
+		File accountFile = Helper.getFilePath(accountNumber, accountNumber, "acc");
+		saveToFile(accountFile.toString(), account.toString());
+		saveToFile(reservationFile.toString(), reservation.toString());
 	}
 
 	/**
@@ -121,8 +109,13 @@ public class AccountManager {
 	 * @param reservationNumber
 	 * @return
 	 */
-	public void deleteReservation(String reservationNumber) throws IllegalLoadException {
-		// TODO implement here
+	public void deleteReservation(Reservation reservation) throws IllegalLoadException {
+		Helper.deleteFile("./accounts/" + account.getAccountNumber() + "/res" + reservation.getReservationNumber() + ".xml");
+		account.deleteReservation(reservation);
+		String accountNum = account.getAccountNumber();
+		String file = "./accounts/" + accountNum + "/acc" + accountNum + ".xml";
+		String content = account.toString();
+		saveToFile(file, content);
 	}
 
 	/**
