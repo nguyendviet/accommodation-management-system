@@ -15,7 +15,7 @@ public class AccountManagerTest {
         createNewAccountTest();
         openFromFileTest();
         // saveToFileTest();
-        // addReservationTest();
+        addReservationTest();
         // deleteReservationTest();
     }
 
@@ -86,28 +86,32 @@ public class AccountManagerTest {
     //     accountManager.saveToFile("./accounts/ABCD1234/accABCD1234.xml", loadedAccount.toString());
     // }
 
-    // public static void addReservationTest() {
-    //     System.out.println("\n=== Add reservation tests ===");
+    public static void addReservationTest() {
+        System.out.println("\n=== Add reservation tests ===");
 
-    //     Address address = new Address("street", "city", "state", "zipcode");
+        Address address = new Address("street", "city", "state", "zipcode");
 
-    //     System.out.println("\nAdd a reservation that already exists.");
-    //     String[] details = new String[]{"ABCD1234", "HOTEL9087", "hotel", address.toString(), "2022-10-01", "2022-10-10", "1000"};
-    //     HotelReservation existingHotelReservation = new HotelReservation(details, true);
-    //     try {
-    //         accountManager.addReservation(existingHotelReservation);
-    //     } catch (Exception e) {
-    //         String expectedError = "Error adding reservation: " + existingHotelReservation.getReservationNumber() + ". Reservation number already exists.";
-    //         Helper.checkPassingTest(expectedError, e.toString());
-    //     }
+        System.out.println("\nAdd a reservation that already exists.");
+        HotelReservation existingHotelReservation = new HotelReservation("ABCD1234", "HOTEL9087", "hotel", address.toString(), "2022-10-01", "2022-11-01", "1000", "2000", null, true);
+        try {
+            accountManager.addReservation(existingHotelReservation);
+        } catch (Exception e) {
+            String expectedError = "Error adding reservation: " + existingHotelReservation.getReservationNumber() + ". Reservation number already exists.";
+            Helper.checkPassingTest(expectedError, e.toString());
+        }
 
-    //     System.out.println("\nAdd a new reservation.");
-    //     HouseReservation newHouseReservation = new HouseReservation("ABCD1234", "HOUSE0532", "2022-04-20", "2022-05-20", "15000", 3);
-    //     accountManager.addReservation(newHouseReservation);
-
-    //     Reset
-    //     accountManager.deleteReservation(newHouseReservation);
-    // }
+        System.out.println("\nAdd a new reservation.");
+        HouseReservation newHouseReservation = new HouseReservation("ABCD1234", "HOUSE0532", "house", address.toString(), "2022-04-20", "2022-05-20", "2", "3", "2", "2000", "15000", null, 3);
+        // accountManager.addReservation(newHouseReservation);
+        Account account = accountManager.openFromFile(newHouseReservation.getAccountNumber());
+        System.out.println("Account before adding:");
+        System.out.println(Helper.beautifyXml(account.toString(), 2));
+        account.addReservation(newHouseReservation);
+        System.out.println("Account after adding:");
+        System.out.println(Helper.beautifyXml(account.toString(), 2));
+        // Reset
+        // accountManager.deleteReservation(newHouseReservation);
+    }
 
     // public static void deleteReservationTest() {
     //     accountManager.openFromFile("ABCD1234");

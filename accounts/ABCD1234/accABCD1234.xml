@@ -9,5 +9,6 @@
   <phoneNumber>999-012-1304</phoneNumber>
   <email>email2@test.com</email>
   <reservations>
+    <reservation>HOUSE0532</reservation>
   </reservations>
 </account>

@@ -1,0 +1,22 @@
+<reservation>
+  <reservationNumber>HOUSE0532</reservationNumber>
+  <accountNumber>ABCD1234</accountNumber>
+  <reservationType>house</reservationType>
+  <address>
+    <street>street</street>
+    <city>city</city>
+    <state>state</state>
+    <zipcode>zipcode</zipcode>
+  </address>
+  <email>null</email>
+  <status>draft</status>
+  <checkIn>2022-04-20</checkIn>
+  <checkOut>2022-05-20</checkOut>
+  <beds>2</beds>
+  <bathrooms>2</bathrooms>
+  <size>2000</size>
+  <price>15000</price>
+  <nights>0</nights>
+  <total/>
+  <floorCount>3</floorCount>
+</reservation>

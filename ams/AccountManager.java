@@ -79,7 +79,22 @@ public class AccountManager {
 		Helper.validateParameters(reservation.toString());
 
 		String accountNumber = reservation.getAccountNumber();
-		this.account = openFromFile(accountNumber);
+		String reservationNumber = reservation.getReservationNumber();
+		File reservationFile = Helper.getFilePath(accountNumber, reservationNumber, "res");
+		boolean exists = reservationFile.exists();
+		if (exists) {
+			throw new DuplicateObjectException(reservation);
+		}
+		// Add reservation to account
+		this.account.addReservation(reservation);
+		// Update account file
+		this.account.saveToFile();
+	}
+
+	public void addReservation(HouseReservation reservation) throws DuplicateObjectException {
+		Helper.validateParameters(reservation.toString());
+
+		String accountNumber = reservation.getAccountNumber();
 		String reservationNumber = reservation.getReservationNumber();
 		File reservationFile = Helper.getFilePath(accountNumber, reservationNumber, "res");
 		boolean exists = reservationFile.exists();
