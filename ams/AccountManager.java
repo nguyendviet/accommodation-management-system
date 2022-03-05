@@ -49,23 +49,6 @@ public class AccountManager {
 	}
 
 	/**
-	 * Save information in file.
-	 * @param filePath 
-	 * @param content 
-	 * @return
-	 */
-	public void saveToFile(String filePath, String content) {
-		Helper.validateParameters(filePath, content);
-		
-		try (
-			FileWriter fw = new FileWriter(filePath)) {
-			fw.write(Helper.beautifyXml(content, 2));
-		} catch (Exception e) {
-			e.printStackTrace();  
-		}
-	}
-
-	/**
 	 * Add reservation to a new file. 
 	 * If duplicate found, throw DuplicateObjectException.
 	 * @param reservation
