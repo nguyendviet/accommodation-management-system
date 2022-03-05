@@ -274,7 +274,9 @@ public abstract class Reservation {
 	public void updateReservation(Date checkIn, Date checkOut, Address address) throws IllegalLoadException {
 		// Validate parameters
 		Helper.validateParameters(checkIn.toString(), checkOut.toString());
-		// TODO implement here
+		this.setCheckIn(checkIn.toString());
+		this.setCheckOut(checkOut.toString());
+		this.address = address.toString();
 	}
 
 	public String getAccountNumber() {

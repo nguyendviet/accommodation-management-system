@@ -3,8 +3,6 @@ package ams;
 import java.io.File;
 import java.io.FileWriter;
 
-import javax.naming.ldap.ExtendedRequest;
-
 public class AccountManager {
 
 	/**
@@ -109,6 +107,30 @@ public class AccountManager {
 	/**
 	 * Add reservation to a new file. 
 	 * If duplicate found, throw DuplicateObjectException.
+	 * @param hotelReservation
+	 * @return
+	 */
+	public void addReservation(HotelReservation hotelReservation) throws DuplicateObjectException {
+		Helper.validateParameters(hotelReservation.toString());
+
+		String accountNumber = hotelReservation.getAccountNumber();
+		String reservationNumber = hotelReservation.getReservationNumber();
+		File reservationFile = Helper.getFilePath(accountNumber, reservationNumber, "res");
+		boolean exists = reservationFile.exists();
+		if (exists) {
+			throw new DuplicateObjectException(hotelReservation);
+		}
+		// Add hotelReservation to account
+		this.account.addReservation(hotelReservation);
+		// Update account file
+		this.account.saveToFile();
+		// Save reservation file
+		this.account.saveToFile(hotelReservation);
+	}
+
+	/**
+	 * Add reservation to a new file. 
+	 * If duplicate found, throw DuplicateObjectException.
 	 * @param houseReservation
 	 * @return
 	 */
@@ -138,7 +160,7 @@ public class AccountManager {
 	 * @return
 	 */
 	public void editReservation(Reservation reservation) throws IllegalLoadException {
-		// TODO implement here
+		Helper.validateParameters(reservation.toString());
 	}
 
 	/**
@@ -164,16 +186,6 @@ public class AccountManager {
 
 	public String getAccountNumber() {
 		return account.getAccountNumber();
-	}
-
-	/**
-	 * Look for account. Return account output if found. 
-	 * If account not found, throw IllegalLoadException.
-	 * @return
-	 */
-	public Account getAccount() throws IllegalLoadException {
-		// TODO implement here
-		return null;
 	}
 
 }
