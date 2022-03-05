@@ -272,17 +272,6 @@ public class Account {
 		return houseReservation.getReservationNumber();
 	}
 
-	/**
-	 * Cancel reservation matching reservation number from currently loaded Account.  
-	 * Can only cancel reservation if the start date is in the future.
-	 * If cannot cancel, throw IllegalOperationException.
-	 * @param reservation Add reservation to the currently loaded Account
-	 * @return
-	 */
-	public void editReservation(Reservation reservation) throws IllegalOperationException {
-		// TODO implement here
-	}
-
 	public void deleteReservation(String fileName) throws IllegalOperationException {
 		// Delete reservation file
 		Helper.deleteFile("./accounts/" + accountNumber + "/res" + fileName + ".xml");

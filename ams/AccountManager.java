@@ -2,7 +2,6 @@ package ams;
 
 import java.io.File;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -156,7 +155,7 @@ public class AccountManager {
 		if (reservations.contains(reservationNumber)) {
 			String reservationType = Helper.getReservationType(reservationNumber);
 			String checkin = "";
-			
+
 			switch (reservationType) {
 				case "CABIN":
 					CabinReservation cabin = new CabinReservation(accountNumber, reservationNumber);
