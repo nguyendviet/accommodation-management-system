@@ -8,5 +8,6 @@ public class AccommodationManagementSystem {
 		AccountManagerTest.openFromFileTest();
 		AccountManagerTest.addReservationTest();
 		AccountManagerTest.deleteReservationTest();
+		AccountManagerTest.cancelReservationTest();
     }
 }

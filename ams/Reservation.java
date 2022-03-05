@@ -144,13 +144,13 @@ public abstract class Reservation {
 	 * Overloading constructor if load from file
 	 * @param fileName
 	 */
-	public Reservation(String fileName) throws IllegalLoadException {
+	public Reservation(String accountNumber, String reservationNumber) throws IllegalLoadException {
 		// Validate parameter is not null and throw IllegalArgumentException.
-		Helper.validateParameters(fileName);
+		Helper.validateParameters(accountNumber, reservationNumber);
 
 		// Create a constructor of file class and parsing an XML file 
 		try { 
-			File reservationFile = new File("./accounts/" + fileName);  
+			File reservationFile = new File("./accounts/" + accountNumber + "/res" + reservationNumber + ".xml");  
 			// Create an instance of factory that gives a document builder  
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();  
 			// Ceate an instance of builder to parse the specified xml reservationFile  

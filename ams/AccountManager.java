@@ -150,12 +150,31 @@ public class AccountManager {
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate today = LocalDate.now();
-		System.out.println(today);
-		
 		ArrayList<String> reservations = this.account.getReservations();
+		String accountNumber = this.account.getAccountNumber();
 
 		if (reservations.contains(reservationNumber)) {
-			this.deleteReservation(reservationNumber);
+			String reservationType = Helper.getReservationType(reservationNumber);
+			String checkin = "";
+			
+			switch (reservationType) {
+				case "CABIN":
+					CabinReservation cabin = new CabinReservation(accountNumber, reservationNumber);
+					checkin = cabin.getCheckIn();
+				case "HOTEL":
+					HotelReservation hotel = new HotelReservation(accountNumber, reservationNumber);
+					checkin = hotel.getCheckIn();
+				default:
+					HouseReservation house = new HouseReservation(accountNumber, reservationNumber);
+					checkin = house.getCheckIn();
+			}
+
+			LocalDate checkinDate = LocalDate.parse(checkin, formatter);
+			if (checkinDate.isBefore(today)) {
+				throw new IllegalOperationException(accountNumber, reservationNumber, "Checkin date has passed.");
+			} else {
+				this.deleteReservation(reservationNumber);
+			}
 		} else {
 			throw new IllegalLoadException("res" + reservationNumber);
 		}

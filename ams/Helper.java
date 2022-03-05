@@ -84,4 +84,14 @@ public class Helper {
         System.out.println("Actual: " + result);
         System.out.println("✅ Test pass: " + result.equals(desire));
     }
+
+    public static String getReservationType(String reservationNumber) {
+        if (reservationNumber.contains("CABIN")) {
+            return "CABIN";
+        } else if (reservationNumber.contains("HOTEL")) {
+            return "HOTEL";
+        } else {
+            return "HOUSE";
+        }
+    }
 }

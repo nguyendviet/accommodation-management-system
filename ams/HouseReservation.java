@@ -15,11 +15,12 @@ public class HouseReservation extends Reservation {
 
 	/**
 	 * Overloading constructor if load from file
-	 * @param fileName
+	 * @param accountNumber
+	 * @param reservationNumber
 	 */
-	public HouseReservation(String fileName) throws IllegalLoadException {
+	public HouseReservation(String accountNumber, String reservationNumber) throws IllegalLoadException {
 		// Call parent's constructor
-		super(fileName);
+		super(accountNumber, reservationNumber);
 	}
 
 	/**

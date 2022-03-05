@@ -14,10 +14,10 @@ public class AccountManagerTest {
     private static AccountManager accountManager = new AccountManager();
 
     public static void main(String []args) {
-        // createNewAccountTest();
-        // openFromFileTest();
-        // addReservationTest();
-        // deleteReservationTest();
+        createNewAccountTest();
+        openFromFileTest();
+        addReservationTest();
+        deleteReservationTest();
         cancelReservationTest();
     }
 
@@ -130,15 +130,31 @@ public class AccountManagerTest {
         LocalDate today = LocalDate.now();
         LocalDate futureCheckin = today.plusDays(30);
         LocalDate futureCheckout = today.plusDays(45);
-        // System.out.println(futureCheckin.toString() + " to " + futureCheckout.toString());
-
         HotelReservation cancellableHotelRes = new HotelReservation("ABCD1234", "HOTEL4801", "reservationType", address.toString(), futureCheckin.toString(), futureCheckout.toString(), "200", "test@email.com", true);
         accountManager.addReservation(cancellableHotelRes);
+
         System.out.println("Reservations before: " + accountManager.getReservations().toString());
         accountManager.cancelReservation("HOTEL4801");
         System.out.println("Reservations after: " + accountManager.getReservations().toString());
+        System.out.println("✅ Reservation has been cancelled successfully.");
 
         System.out.println("\n📌 Cancel an existing reservation but checkin date has passed.");
+
+        // Create a hotel reservation that cannot be cancelled
+        LocalDate pastCheckin = today.minusDays(60);
+        LocalDate pastCheckout = today.minusDays(15);
+        HotelReservation uncancellableHotelRes = new HotelReservation("ABCD1234", "HOTEL2412", "reservationType", address.toString(), pastCheckin.toString(), pastCheckout.toString(), "200", "test@email.com", true);
+        accountManager.addReservation(uncancellableHotelRes);
+        System.out.println("Today: " + today.toString() + " " + " Checkin: " + pastCheckin.toString());
+
+        try {
+            accountManager.cancelReservation("HOTEL2412");
+        } catch (Exception e) {
+            String expectedError = "Error modifying reservation: HOTEL2412 for account: ABCD1234. Reason: Checkin date has passed.";
+            Helper.checkPassingTest(expectedError, e.toString());
+        }
+        // Clean up
+        accountManager.deleteReservation("HOTEL2412");
 
         System.out.println("\n📌 Cancel a non-existing reservation.");
         try {
