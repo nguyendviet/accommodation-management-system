@@ -294,9 +294,8 @@ public class Account {
 	/**
 	 * @return
 	 */
-	public List<Reservation> getReservations() {
-		// TODO implement here
-		return null;
+	public ArrayList<String> getReservations() {
+		return this.reservations;
 	}
 
 }

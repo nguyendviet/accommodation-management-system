@@ -1,7 +1,10 @@
 package ams;
 
 import java.io.File;
-import java.io.FileWriter;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class AccountManager {
 
@@ -142,8 +145,20 @@ public class AccountManager {
 	 * @param reservation
 	 * @return
 	 */
-	public void editReservation(Reservation reservation) throws IllegalLoadException {
-		Helper.validateParameters(reservation.toString());
+	public void cancelReservation(String reservationNumber) throws IllegalLoadException {
+		Helper.validateParameters(reservationNumber);
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate today = LocalDate.now();
+		System.out.println(today);
+		
+		ArrayList<String> reservations = this.account.getReservations();
+
+		if (reservations.contains(reservationNumber)) {
+			this.deleteReservation(reservationNumber);
+		} else {
+			throw new IllegalLoadException("res" + reservationNumber);
+		}
 	}
 
 	/**
@@ -169,6 +184,10 @@ public class AccountManager {
 
 	public String getAccountNumber() {
 		return account.getAccountNumber();
+	}
+
+	public ArrayList<String> getReservations() {
+		return account.getReservations();
 	}
 
 }

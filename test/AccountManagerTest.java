@@ -1,5 +1,7 @@
 package test;
 
+import java.time.LocalDate;
+
 import ams.Account;
 import ams.AccountManager;
 import ams.Address;
@@ -12,10 +14,11 @@ public class AccountManagerTest {
     private static AccountManager accountManager = new AccountManager();
 
     public static void main(String []args) {
-        createNewAccountTest();
-        openFromFileTest();
-        addReservationTest();
-        deleteReservationTest();
+        // createNewAccountTest();
+        // openFromFileTest();
+        // addReservationTest();
+        // deleteReservationTest();
+        cancelReservationTest();
     }
 
     public static void createNewAccountTest() {
@@ -112,6 +115,36 @@ public class AccountManagerTest {
             accountManager.deleteReservation("HOTEL1983");
         } catch (Exception e) {
             String expectedError = "Error loading file: resHOTEL1983. File doesn't exist.";
+            Helper.checkPassingTest(expectedError, e.toString());
+        }
+    }
+
+    public static void cancelReservationTest() {
+        System.out.println("\n=== Cancel reservation tests ===");
+
+        System.out.println("\n📌 Cancel an existing reservation.");
+        accountManager.openFromFile("ABCD1234");
+
+        // Create a hotel reservation to cancel
+        Address address = new Address("street", "city", "state", "zipcode");
+        LocalDate today = LocalDate.now();
+        LocalDate futureCheckin = today.plusDays(30);
+        LocalDate futureCheckout = today.plusDays(45);
+        // System.out.println(futureCheckin.toString() + " to " + futureCheckout.toString());
+
+        HotelReservation cancellableHotelRes = new HotelReservation("ABCD1234", "HOTEL4801", "reservationType", address.toString(), futureCheckin.toString(), futureCheckout.toString(), "200", "test@email.com", true);
+        accountManager.addReservation(cancellableHotelRes);
+        System.out.println("Reservations before: " + accountManager.getReservations().toString());
+        accountManager.cancelReservation("HOTEL4801");
+        System.out.println("Reservations after: " + accountManager.getReservations().toString());
+
+        System.out.println("\n📌 Cancel an existing reservation but checkin date has passed.");
+
+        System.out.println("\n📌 Cancel a non-existing reservation.");
+        try {
+            accountManager.cancelReservation("HOTEL1234");
+        } catch (Exception e) {
+            String expectedError = "Error loading file: resHOTEL1234. File doesn't exist.";
             Helper.checkPassingTest(expectedError, e.toString());
         }
     }
